@@ -258,7 +258,7 @@ export default function AuthDemo() {
             
             <div className={`p-4 rounded-lg text-center ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'}`}>
               <div className="text-2xl font-bold text-blue-500">Fast</div>
-              <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>< 50ms</div>
+              <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>&lt; 50ms</div>
             </div>
           </div>
         </div>
