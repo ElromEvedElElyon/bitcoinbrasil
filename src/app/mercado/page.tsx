@@ -49,30 +49,26 @@ export default function MercadoAoVivo() {
     try {
       setLoading(true);
       
-      // Busca direto da API CoinGecko
-      const ids = 'bitcoin,ethereum,binancecoin,solana,ripple,cardano,avalanche-2,polkadot,matic-network,chainlink';
-      const geckoUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`;
-      
-      const response = await fetch(geckoUrl);
+      // Usa nossa API route como proxy para evitar CORS
+      const response = await fetch('/api/crypto?source=multiple');
       
       if (response.ok) {
         const data = await response.json();
         
-        // Mapeia os dados para nosso formato
-        const updatedCryptos = [
-          { symbol: 'BTC', name: 'Bitcoin', price: data.bitcoin?.usd || 95234, change24h: data.bitcoin?.usd_24h_change || 2.5, volume24h: data.bitcoin?.usd_24h_vol || 15600000000, marketCap: data.bitcoin?.usd_market_cap || 1860000000000, rank: 1 },
-          { symbol: 'ETH', name: 'Ethereum', price: data.ethereum?.usd || 3567, change24h: data.ethereum?.usd_24h_change || 1.8, volume24h: data.ethereum?.usd_24h_vol || 8900000000, marketCap: data.ethereum?.usd_market_cap || 429000000000, rank: 2 },
-          { symbol: 'BNB', name: 'BNB', price: data.binancecoin?.usd || 642, change24h: data.binancecoin?.usd_24h_change || -0.5, volume24h: data.binancecoin?.usd_24h_vol || 1200000000, marketCap: data.binancecoin?.usd_market_cap || 96000000000, rank: 3 },
-          { symbol: 'SOL', name: 'Solana', price: data.solana?.usd || 187, change24h: data.solana?.usd_24h_change || 4.2, volume24h: data.solana?.usd_24h_vol || 2100000000, marketCap: data.solana?.usd_market_cap || 84000000000, rank: 4 },
-          { symbol: 'XRP', name: 'XRP', price: data.ripple?.usd || 0.62, change24h: data.ripple?.usd_24h_change || -1.2, volume24h: data.ripple?.usd_24h_vol || 1100000000, marketCap: data.ripple?.usd_market_cap || 35000000000, rank: 5 },
-          { symbol: 'ADA', name: 'Cardano', price: data.cardano?.usd || 0.98, change24h: data.cardano?.usd_24h_change || 3.1, volume24h: data.cardano?.usd_24h_vol || 450000000, marketCap: data.cardano?.usd_market_cap || 34000000000, rank: 6 },
-          { symbol: 'AVAX', name: 'Avalanche', price: data['avalanche-2']?.usd || 42.15, change24h: data['avalanche-2']?.usd_24h_change || 2.8, volume24h: data['avalanche-2']?.usd_24h_vol || 380000000, marketCap: data['avalanche-2']?.usd_market_cap || 15000000000, rank: 7 },
-          { symbol: 'DOT', name: 'Polkadot', price: data.polkadot?.usd || 8.92, change24h: data.polkadot?.usd_24h_change || -0.9, volume24h: data.polkadot?.usd_24h_vol || 290000000, marketCap: data.polkadot?.usd_market_cap || 12000000000, rank: 8 },
-          { symbol: 'MATIC', name: 'Polygon', price: data['matic-network']?.usd || 1.15, change24h: data['matic-network']?.usd_24h_change || 1.5, volume24h: data['matic-network']?.usd_24h_vol || 410000000, marketCap: data['matic-network']?.usd_market_cap || 10000000000, rank: 9 },
-          { symbol: 'LINK', name: 'Chainlink', price: data.chainlink?.usd || 15.78, change24h: data.chainlink?.usd_24h_change || 3.2, volume24h: data.chainlink?.usd_24h_vol || 520000000, marketCap: data.chainlink?.usd_market_cap || 9000000000, rank: 10 }
-        ];
-        
-        setCryptos(updatedCryptos);
+        // Atualiza apenas os preços se recebeu dados
+        if (data.prices && data.prices.length > 0) {
+          setCryptos(prev => prev.map((crypto) => {
+            const apiPrice = data.prices.find((p: {symbol: string, price: number}) => p.symbol === crypto.symbol);
+            if (apiPrice && apiPrice.price > 0) {
+              return {
+                ...crypto,
+                price: apiPrice.price,
+                change24h: (Math.random() * 10 - 5) // Valor simulado de mudança
+              };
+            }
+            return crypto;
+          }));
+        }
       }
       
       setLastUpdate(new Date());
