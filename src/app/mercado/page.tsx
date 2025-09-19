@@ -1,350 +1,466 @@
-import Link from "next/link";
-import { ArrowLeft, TrendingUp, TrendingDown, ExternalLink, BarChart3, Activity } from "lucide-react";
+'use client';
 
-export default function Mercado() {
-  const cryptos = [
-    {
-      nome: "Bitcoin",
-      simbolo: "BTC",
-      preco: "R$ 286.420,00",
-      mudanca24h: "+5.24%",
-      mudanca7d: "+12.8%",
-      marketCap: "R$ 5.6T",
-      volume24h: "R$ 156B",
-      alta: true,
-      grafico: [45, 52, 48, 61, 58, 67, 72, 69, 78, 82]
-    },
-    {
-      nome: "Ethereum",
-      simbolo: "ETH",
-      preco: "R$ 18.650,00",
-      mudanca24h: "+3.14%",
-      mudanca7d: "+8.2%",
-      marketCap: "R$ 2.2T",
-      volume24h: "R$ 89B",
-      alta: true,
-      grafico: [32, 38, 35, 42, 45, 48, 52, 49, 55, 58]
-    },
-    {
-      nome: "Cardano",
-      simbolo: "ADA",
-      preco: "R$ 2,45",
-      mudanca24h: "-1.23%",
-      mudanca7d: "+2.1%",
-      marketCap: "R$ 85B",
-      volume24h: "R$ 2.1B",
-      alta: false,
-      grafico: [85, 88, 82, 79, 84, 81, 78, 83, 80, 79]
-    },
-    {
-      nome: "Solana",
-      simbolo: "SOL",
-      preco: "R$ 945,00",
-      mudanca24h: "+7.89%",
-      mudanca7d: "+15.4%",
-      marketCap: "R$ 425B",
-      volume24h: "R$ 12B",
-      alta: true,
-      grafico: [125, 132, 128, 145, 152, 158, 165, 162, 175, 182]
-    },
-    {
-      nome: "Chainlink",
-      simbolo: "LINK",
-      preco: "R$ 78,90",
-      mudanca24h: "+2.15%",
-      mudanca7d: "+6.7%",
-      marketCap: "R$ 45B",
-      volume24h: "R$ 1.8B",
-      alta: true,
-      grafico: [65, 68, 66, 72, 75, 78, 82, 79, 85, 88]
-    },
-    {
-      nome: "Polygon",
-      simbolo: "MATIC",
-      preco: "R$ 4,67",
-      mudanca24h: "-0.87%",
-      mudanca7d: "+1.2%",
-      marketCap: "R$ 43B",
-      volume24h: "R$ 890M",
-      alta: false,
-      grafico: [92, 95, 89, 86, 91, 88, 85, 89, 87, 86]
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { 
+  TrendingUp, 
+  TrendingDown, 
+  Activity, 
+  DollarSign, 
+  BarChart3,
+  ArrowLeft,
+  RefreshCw,
+  Sparkles,
+  Globe,
+  Zap
+} from 'lucide-react';
+
+interface CryptoData {
+  symbol: string;
+  name: string;
+  price: number;
+  change24h: number;
+  volume24h: number;
+  marketCap: number;
+  high24h?: number;
+  low24h?: number;
+  rank?: number;
+}
+
+export default function MercadoAoVivo() {
+  const [cryptos, setCryptos] = useState<CryptoData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [lastUpdate, setLastUpdate] = useState(new Date());
+  const [autoRefresh, setAutoRefresh] = useState(true);
+
+  const fetchRealPrices = async () => {
+    try {
+      setLoading(true);
+      
+      // Lista expandida de criptomoedas
+      const cryptoList = [
+        { symbol: 'BTC', id: 'bitcoin', name: 'Bitcoin' },
+        { symbol: 'ETH', id: 'ethereum', name: 'Ethereum' },
+        { symbol: 'BNB', id: 'binancecoin', name: 'BNB' },
+        { symbol: 'SOL', id: 'solana', name: 'Solana' },
+        { symbol: 'XRP', id: 'ripple', name: 'XRP' },
+        { symbol: 'ADA', id: 'cardano', name: 'Cardano' },
+        { symbol: 'AVAX', id: 'avalanche-2', name: 'Avalanche' },
+        { symbol: 'DOT', id: 'polkadot', name: 'Polkadot' },
+        { symbol: 'MATIC', id: 'matic-network', name: 'Polygon' },
+        { symbol: 'LINK', id: 'chainlink', name: 'Chainlink' },
+        { symbol: 'UNI', id: 'uniswap', name: 'Uniswap' },
+        { symbol: 'ATOM', id: 'cosmos', name: 'Cosmos' },
+        { symbol: 'LTC', id: 'litecoin', name: 'Litecoin' },
+        { symbol: 'FIL', id: 'filecoin', name: 'Filecoin' },
+        { symbol: 'ARB', id: 'arbitrum', name: 'Arbitrum' }
+      ];
+
+      const prices: CryptoData[] = [];
+
+      // Busca dados do CoinGecko para todos de uma vez
+      const ids = cryptoList.map(c => c.id).join(',');
+      const geckoResponse = await fetch(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&sparkline=false&price_change_percentage=24h`
+      );
+
+      if (geckoResponse.ok) {
+        const geckoData = await geckoResponse.json();
+        
+        for (const coin of geckoData) {
+          const cryptoInfo = cryptoList.find(c => c.id === coin.id);
+          if (cryptoInfo) {
+            prices.push({
+              symbol: cryptoInfo.symbol,
+              name: cryptoInfo.name,
+              price: coin.current_price,
+              change24h: coin.price_change_percentage_24h || 0,
+              volume24h: coin.total_volume || 0,
+              marketCap: coin.market_cap || 0,
+              high24h: coin.high_24h,
+              low24h: coin.low_24h,
+              rank: coin.market_cap_rank
+            });
+          }
+        }
+      }
+
+      // Fallback para Binance API para os principais pares
+      if (prices.length === 0) {
+        for (const crypto of cryptoList.slice(0, 6)) {
+          try {
+            const response = await fetch(
+              `https://api.binance.com/api/v3/ticker/24hr?symbol=${crypto.symbol}USDT`
+            );
+            
+            if (response.ok) {
+              const data = await response.json();
+              prices.push({
+                symbol: crypto.symbol,
+                name: crypto.name,
+                price: parseFloat(data.lastPrice),
+                change24h: parseFloat(data.priceChangePercent),
+                volume24h: parseFloat(data.volume) * parseFloat(data.lastPrice),
+                marketCap: 0,
+                high24h: parseFloat(data.highPrice),
+                low24h: parseFloat(data.lowPrice)
+              });
+            }
+          } catch (error) {
+            console.error(`Erro ao buscar ${crypto.symbol}:`, error);
+          }
+        }
+      }
+
+      setCryptos(prices);
+      setLastUpdate(new Date());
+    } catch (error) {
+      console.error('Erro ao buscar preços:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
-  const noticias = [
-    "Bitcoin supera resistência de R$ 280.000",
-    "Ethereum prepara nova atualização para Q2",
-    "Bancos brasileiros aumentam exposição crypto",
-    "Regulamentação DeFi avança no Congresso"
-  ];
+  useEffect(() => {
+    fetchRealPrices();
+
+    if (autoRefresh) {
+      const interval = setInterval(fetchRealPrices, 30000); // Atualiza a cada 30 segundos
+      return () => clearInterval(interval);
+    }
+  }, [autoRefresh]);
+
+  const formatPrice = (price: number) => {
+    if (price >= 1000) {
+      return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(price);
+    } else if (price >= 1) {
+      return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(price);
+    } else {
+      return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 6
+      }).format(price);
+    }
+  };
+
+  const formatVolume = (volume: number) => {
+    if (volume >= 1e9) {
+      return `$${(volume / 1e9).toFixed(2)}B`;
+    } else if (volume >= 1e6) {
+      return `$${(volume / 1e6).toFixed(2)}M`;
+    } else if (volume >= 1e3) {
+      return `$${(volume / 1e3).toFixed(2)}K`;
+    }
+    return `$${volume.toFixed(2)}`;
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-green-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2 text-green-600 hover:text-green-700">
-                <ArrowLeft size={20} />
-                <span>Voltar</span>
-              </Link>
-              <h1 className="text-2xl font-bold text-green-600">Mercado Crypto</h1>
-            </div>
-            <div className="flex space-x-4">
-              <a 
-                href="https://yuotube.ai" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center gap-2 text-sm"
-              >
-                YuoTube.ai <ExternalLink size={14} />
-              </a>
-              <a 
-                href="https://standardbitcoin.io" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 flex items-center gap-2 text-sm"
-              >
-                Standard Bitcoin <ExternalLink size={14} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-aurora-darker">
+      {/* Aurora Background Effect */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="gradient-aurora opacity-30 absolute inset-0"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-aurora-cyan blur-[150px] opacity-20 rounded-full"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-aurora-purple blur-[150px] opacity-20 rounded-full"></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-aurora-pink blur-[150px] opacity-15 rounded-full"></div>
+      </div>
 
-      {/* Market Stats */}
-      <section className="py-8 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center">
-                <BarChart3 className="text-green-500 mr-3" size={24} />
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">R$ 8.2T</div>
-                  <div className="text-sm text-gray-600">Market Cap Total</div>
-                </div>
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="bg-aurora-dark shadow-lg border-b-2 border-aurora-cyan">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center gap-4">
+                <Link 
+                  href="/" 
+                  className="text-white hover:text-aurora-cyan transition-colors"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </Link>
+                <h1 className="text-2xl font-bold text-white">Bitcoin Brasil</h1>
               </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center">
-                <Activity className="text-blue-500 mr-3" size={24} />
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">R$ 247B</div>
-                  <div className="text-sm text-gray-600">Volume 24h</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center">
-                <TrendingUp className="text-green-500 mr-3" size={24} />
-                <div>
-                  <div className="text-2xl font-bold text-green-600">+4.8%</div>
-                  <div className="text-sm text-gray-600">Mercado 24h</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center">
-                <div className="w-6 h-6 bg-orange-500 rounded-full mr-3"></div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">54.2%</div>
-                  <div className="text-sm text-gray-600">Dominância BTC</div>
-                </div>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://yuotube.ai" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gradient-aurora text-white px-4 py-2 rounded-full text-sm hover:opacity-90 transition-opacity"
+                >
+                  YuoTube.ai
+                </a>
+                <a 
+                  href="https://www.standardbitcoin.io" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-aurora-light text-white px-4 py-2 rounded-full hover:opacity-90 transition-opacity text-sm border border-aurora-purple"
+                >
+                  Standard Bitcoin
+                </a>
+                <a 
+                  href="https://pump.fun/coin/386JZJtkvf43yoNawAHmHHeEhZWUTZ4UuJJtxC9fpump" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-aurora-pink text-white px-4 py-2 rounded-full hover:opacity-90 transition-opacity text-sm border border-aurora-cyan"
+                >
+                  STBTCx Token
+                </a>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* Crypto Table */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-xl font-bold text-gray-900">Top Criptomoedas</h3>
-          </div>
-          
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Moeda
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Preço
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    24h
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    7d
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Market Cap
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Volume
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Gráfico 7d
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {cryptos.map((crypto, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
-                          {crypto.simbolo.charAt(0)}
-                        </div>
-                        <div>
-                          <div className="font-medium text-gray-900">{crypto.nome}</div>
-                          <div className="text-sm text-gray-500">{crypto.simbolo}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="font-semibold text-gray-900">{crypto.preco}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className={`flex items-center ${crypto.alta ? 'text-green-600' : 'text-red-600'}`}>
-                        {crypto.alta ? <TrendingUp size={16} className="mr-1" /> : <TrendingDown size={16} className="mr-1" />}
-                        {crypto.mudanca24h}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-green-600 font-medium">{crypto.mudanca7d}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-gray-900">{crypto.marketCap}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-gray-900">{crypto.volume24h}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="w-20 h-8">
-                        <svg viewBox="0 0 100 40" className="w-full h-full">
-                          <polyline
-                            fill="none"
-                            stroke={crypto.alta ? "#10b981" : "#ef4444"}
-                            strokeWidth="2"
-                            points={crypto.grafico.map((point, i) => `${i * 10},${40 - (point / 200) * 40}`).join(' ')}
-                          />
-                        </svg>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* News and Analysis */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-          {/* Market News */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Notícias do Mercado</h3>
-            <div className="space-y-4">
-              {noticias.map((noticia, index) => (
-                <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <div className="text-gray-800">{noticia}</div>
-                </div>
-              ))}
-            </div>
-            <Link href="/noticias" className="block mt-4 text-green-600 hover:text-green-700 font-medium">
-              Ver todas as notícias →
-            </Link>
-          </div>
-
-          {/* Fear & Greed Index */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Índice Medo & Ganância</h3>
+        {/* Page Title Section */}
+        <div className="gradient-aurora-subtle py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <div className="relative w-32 h-32 mx-auto mb-4">
-                <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="#e5e7eb"
-                    strokeWidth="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="#10b981"
-                    strokeWidth="8"
-                    fill="none"
-                    strokeDasharray={`${72 * 2.51} 251`}
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">72</div>
-                    <div className="text-sm text-gray-500">Ganância</div>
-                  </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-4">
+                <Activity className="w-4 h-4 text-aurora-cyan animate-pulse" />
+                <span className="text-sm font-medium text-white">Atualização em Tempo Real</span>
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                <span className="text-aurora">Mercado Crypto ao Vivo</span>
+              </h1>
+              
+              <p className="text-xl text-gray-300 mb-6">
+                Preços em tempo real das principais criptomoedas via Binance & CoinGecko
+              </p>
+
+              <div className="flex flex-wrap gap-4 justify-center">
+                <button
+                  onClick={fetchRealPrices}
+                  disabled={loading}
+                  className="btn-aurora inline-flex items-center gap-2"
+                >
+                  <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
+                  Atualizar Agora
+                </button>
+                <button
+                  onClick={() => setAutoRefresh(!autoRefresh)}
+                  className={`btn-glass inline-flex items-center gap-2 ${
+                    autoRefresh ? 'border-aurora-green' : 'border-gray-600'
+                  }`}
+                >
+                  <Zap className={`w-5 h-5 ${autoRefresh ? 'text-aurora-green' : 'text-gray-400'}`} />
+                  Auto-refresh: {autoRefresh ? 'ON' : 'OFF'}
+                </button>
+              </div>
+
+              <div className="flex flex-wrap gap-6 justify-center mt-8">
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <Globe className="w-4 h-4 text-aurora-blue" />
+                  <span>Dados Globais</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <Activity className="w-4 h-4 text-aurora-cyan" />
+                  <span>Última atualização: {lastUpdate.toLocaleTimeString('pt-BR')}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <Sparkles className="w-4 h-4 text-aurora-pink" />
+                  <span>{cryptos.length} Criptomoedas</span>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm">
-                O mercado está em estado de ganância, indicando otimismo dos investidores.
-              </p>
             </div>
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-8 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg p-6 text-center text-white">
-          <h3 className="text-2xl font-bold mb-4">Acompanhe o mercado em tempo real</h3>
-          <p className="mb-6">
-            Mantenha-se atualizado com as melhores ferramentas e análises do mercado crypto.
-          </p>
-          <div className="flex justify-center space-x-4">
-            <a 
-              href="https://yuotube.ai" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white text-green-600 px-6 py-3 rounded-lg hover:bg-gray-100 font-medium flex items-center gap-2"
-            >
-              Explore YuoTube.ai <ExternalLink size={16} />
-            </a>
-            <a 
-              href="https://standardbitcoin.io" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 font-medium flex items-center gap-2"
-            >
-              Standard Bitcoin <ExternalLink size={16} />
-            </a>
+        {/* Market Table */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="card-aurora overflow-hidden">
+            <div className="gradient-aurora p-6">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                <BarChart3 className="w-6 h-6" />
+                Tabela de Preços em Tempo Real
+              </h2>
+            </div>
+
+            {loading && cryptos.length === 0 ? (
+              <div className="p-12 text-center">
+                <div className="inline-flex items-center gap-3">
+                  <RefreshCw className="w-6 h-6 text-aurora-cyan animate-spin" />
+                  <span className="text-white text-lg">Carregando dados do mercado...</span>
+                </div>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-aurora-dark/50">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Rank
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Moeda
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Preço
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        24h %
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Volume 24h
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Market Cap
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        24h High/Low
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-800">
+                    {cryptos.map((crypto, index) => (
+                      <tr 
+                        key={crypto.symbol} 
+                        className="hover:bg-aurora-light/10 transition-colors"
+                      >
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-gray-400">
+                            {crypto.rank || index + 1}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-aurora-cyan to-aurora-purple flex items-center justify-center">
+                              <span className="text-xs font-bold text-white">
+                                {crypto.symbol.slice(0, 2)}
+                              </span>
+                            </div>
+                            <div>
+                              <div className="text-white font-medium">{crypto.name}</div>
+                              <div className="text-sm text-gray-400">{crypto.symbol}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-right whitespace-nowrap">
+                          <span className="text-white font-bold text-lg">
+                            {formatPrice(crypto.price)}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-right whitespace-nowrap">
+                          <div className={`inline-flex items-center gap-1 ${
+                            crypto.change24h >= 0 
+                              ? 'text-aurora-green' 
+                              : 'text-aurora-pink'
+                          }`}>
+                            {crypto.change24h >= 0 ? (
+                              <TrendingUp className="w-4 h-4" />
+                            ) : (
+                              <TrendingDown className="w-4 h-4" />
+                            )}
+                            <span className="font-medium">
+                              {crypto.change24h >= 0 ? '+' : ''}{crypto.change24h.toFixed(2)}%
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-right whitespace-nowrap">
+                          <span className="text-gray-300">
+                            {formatVolume(crypto.volume24h)}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-right whitespace-nowrap">
+                          <span className="text-gray-300">
+                            {formatVolume(crypto.marketCap)}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-right whitespace-nowrap">
+                          {crypto.high24h && crypto.low24h ? (
+                            <div className="text-sm">
+                              <div className="text-aurora-green">
+                                H: {formatPrice(crypto.high24h)}
+                              </div>
+                              <div className="text-aurora-pink">
+                                L: {formatPrice(crypto.low24h)}
+                              </div>
+                            </div>
+                          ) : (
+                            <span className="text-gray-500">-</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Info Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div className="card-aurora p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold text-white">Top Ganhador 24h</h3>
+                <TrendingUp className="w-5 h-5 text-aurora-green" />
+              </div>
+              {cryptos.length > 0 && (() => {
+                const topGainer = [...cryptos].sort((a, b) => b.change24h - a.change24h)[0];
+                return (
+                  <div>
+                    <p className="text-2xl font-bold text-aurora-green">
+                      {topGainer.symbol}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      +{topGainer.change24h.toFixed(2)}%
+                    </p>
+                  </div>
+                );
+              })()}
+            </div>
+
+            <div className="card-aurora p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold text-white">Top Perdedor 24h</h3>
+                <TrendingDown className="w-5 h-5 text-aurora-pink" />
+              </div>
+              {cryptos.length > 0 && (() => {
+                const topLoser = [...cryptos].sort((a, b) => a.change24h - b.change24h)[0];
+                return (
+                  <div>
+                    <p className="text-2xl font-bold text-aurora-pink">
+                      {topLoser.symbol}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      {topLoser.change24h.toFixed(2)}%
+                    </p>
+                  </div>
+                );
+              })()}
+            </div>
+
+            <div className="card-aurora p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold text-white">Maior Volume</h3>
+                <DollarSign className="w-5 h-5 text-aurora-cyan" />
+              </div>
+              {cryptos.length > 0 && (() => {
+                const topVolume = [...cryptos].sort((a, b) => b.volume24h - a.volume24h)[0];
+                return (
+                  <div>
+                    <p className="text-2xl font-bold text-aurora-cyan">
+                      {topVolume.symbol}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      {formatVolume(topVolume.volume24h)}
+                    </p>
+                  </div>
+                );
+              })()}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h5 className="font-bold mb-4">Bitcoin Brasil - Mercado</h5>
-            <p className="text-gray-400 text-sm mb-4">
-              Dados de mercado em tempo real para suas decisões de investimento.
-            </p>
-            <div className="flex justify-center space-x-6">
-              <a href="https://yuotube.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-                YuoTube.ai
-              </a>
-              <a href="https://standardbitcoin.io" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-                Standard Bitcoin
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
