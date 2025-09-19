@@ -13,7 +13,7 @@ interface CryptoPrice {
 class CryptoPriceService {
   private binanceBaseUrl = 'https://api.binance.com/api/v3';
   private coingeckoBaseUrl = 'https://api.coingecko.com/api/v3';
-  private cache: Map<string, { data: any; timestamp: number }> = new Map();
+  private cache: Map<string, { data: unknown; timestamp: number }> = new Map();
   private cacheTimeout = 60000; // 1 minuto de cache
 
   // Busca preços da Binance
@@ -21,7 +21,7 @@ class CryptoPriceService {
     try {
       const cacheKey = `binance_${symbol}`;
       const cached = this.getFromCache(cacheKey);
-      if (cached) return cached;
+      if (cached && typeof cached === 'number') return cached;
 
       const response = await fetch(
         `${this.binanceBaseUrl}/ticker/price?symbol=${symbol}USDT`
@@ -45,7 +45,7 @@ class CryptoPriceService {
     try {
       const cacheKey = `coingecko_${coinId}`;
       const cached = this.getFromCache(cacheKey);
-      if (cached) return cached;
+      if (cached && typeof cached === 'object' && cached !== null) return cached as CryptoPrice;
 
       const response = await fetch(
         `${this.coingeckoBaseUrl}/coins/markets?vs_currency=usd&ids=${coinId}&order=market_cap_desc&per_page=1&page=1&sparkline=false&price_change_percentage=24h`
@@ -142,7 +142,7 @@ class CryptoPriceService {
   }
 
   // Cache management
-  private getFromCache(key: string): any {
+  private getFromCache(key: string): unknown {
     const cached = this.cache.get(key);
     if (!cached) return null;
     
@@ -154,7 +154,7 @@ class CryptoPriceService {
     return cached.data;
   }
 
-  private setCache(key: string, data: any): void {
+  private setCache(key: string, data: unknown): void {
     this.cache.set(key, {
       data,
       timestamp: Date.now()
