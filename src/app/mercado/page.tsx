@@ -51,14 +51,15 @@ export default function MercadoAoVivo() {
         const data = await apiResponse.json();
         
         if (data.prices && data.prices.length > 0) {
-          // Atualiza apenas os preços mantendo estrutura
+          // Atualiza os preços com dados reais da API
           setCryptos(prev => prev.map(crypto => {
-            const newPrice = data.prices.find((p: { symbol: string; price: number }) => p.symbol === crypto.symbol);
-            if (newPrice) {
+            const newData = data.prices.find((p: { symbol: string; price: number; change24h?: number; volume24h?: number }) => p.symbol === crypto.symbol);
+            if (newData) {
               return {
                 ...crypto,
-                price: newPrice.price,
-                change24h: crypto.change24h + (Math.random() * 2 - 1) // Pequena variação
+                price: newData.price,
+                change24h: newData.change24h || crypto.change24h,
+                volume24h: newData.volume24h || crypto.volume24h
               };
             }
             return crypto;

@@ -68,18 +68,19 @@ export async function GET(request: Request) {
       });
     }
     
-    // Preços múltiplos
+    // Preços múltiplos - Usa Binance diretamente (CoinGecko com limite de taxa)
     if (source === 'multiple') {
       const prices = [];
       
-      // Tenta Binance primeiro
       try {
-        const binanceSymbols = ['BTC', 'ETH', 'BNB', 'SOL', 'XRP', 'ADA', 'MATIC', 'DOT', 'AVAX', 'LINK'];
+        // Usa Binance API para os principais pares
+        const binanceSymbols = ['BTC', 'ETH', 'BNB', 'SOL', 'XRP', 'ADA'];
         
-        for (const sym of binanceSymbols) {
+        // Busca todos de uma vez com Promise.all para ser mais rápido
+        const promises = binanceSymbols.map(async (sym) => {
           try {
             const response = await fetch(
-              `https://api.binance.com/api/v3/ticker/price?symbol=${sym}USDT`,
+              `https://api.binance.com/api/v3/ticker/24hr?symbol=${sym}USDT`,
               { 
                 headers: { 'Accept': 'application/json' },
                 next: { revalidate: 30 }
@@ -88,40 +89,44 @@ export async function GET(request: Request) {
             
             if (response.ok) {
               const data = await response.json();
-              prices.push({
+              return {
                 symbol: sym,
-                price: parseFloat(data.price)
-              });
+                price: parseFloat(data.lastPrice),
+                change24h: parseFloat(data.priceChangePercent),
+                volume24h: parseFloat(data.quoteVolume) // quoteVolume é em USDT
+              };
             }
-          } catch {
-            // Fallback para valores padrão se falhar
-            const defaultPrices: Record<string, number> = {
-              'BTC': 95000, 'ETH': 3500, 'BNB': 640, 'SOL': 185,
-              'XRP': 0.62, 'ADA': 0.98, 'MATIC': 1.15, 'DOT': 8.9,
-              'AVAX': 42, 'LINK': 15.7
-            };
-            prices.push({
-              symbol: sym,
-              price: defaultPrices[sym] || 1
-            });
+          } catch (err) {
+            console.log(`Erro ao buscar ${sym}:`, err);
+          }
+          return null;
+        });
+        
+        const results = await Promise.all(promises);
+        
+        for (const result of results) {
+          if (result) {
+            prices.push(result);
           }
         }
-      } catch {
-        // Se tudo falhar, retorna valores de exemplo
-        return NextResponse.json({ 
-          prices: [
-            { symbol: 'BTC', price: 95000 },
-            { symbol: 'ETH', price: 3500 },
-            { symbol: 'BNB', price: 640 },
-            { symbol: 'SOL', price: 185 },
-            { symbol: 'XRP', price: 0.62 },
-            { symbol: 'ADA', price: 0.98 }
-          ], 
-          source: 'fallback' 
-        });
+        
+      } catch (error) {
+        console.error('Erro ao buscar preços Binance:', error);
       }
       
-      return NextResponse.json({ prices, source: 'binance' });
+      // Se não conseguiu dados da API, usa valores de fallback realistas
+      if (prices.length === 0) {
+        prices.push(
+          { symbol: 'BTC', price: 116500, change24h: -0.5, volume24h: 1135000000 },
+          { symbol: 'ETH', price: 3450, change24h: 1.2, volume24h: 890000000 },
+          { symbol: 'BNB', price: 698, change24h: 0.8, volume24h: 120000000 },
+          { symbol: 'SOL', price: 213, change24h: 3.5, volume24h: 210000000 },
+          { symbol: 'XRP', price: 2.31, change24h: -1.1, volume24h: 110000000 },
+          { symbol: 'ADA', price: 0.95, change24h: 2.3, volume24h: 45000000 }
+        );
+      }
+      
+      return NextResponse.json({ prices, source: prices.length > 0 ? 'binance' : 'fallback' });
     }
     
     return NextResponse.json({ error: 'Invalid source' }, { status: 400 });

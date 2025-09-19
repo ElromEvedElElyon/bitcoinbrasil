@@ -2,19 +2,42 @@
 
 import { useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
-import { cryptoPriceService, type CryptoPrice } from '@/lib/crypto-prices';
+
+interface CryptoPrice {
+  symbol: string;
+  price: number;
+  change24h: number;
+}
 
 export default function CryptoPrices() {
   const [prices, setPrices] = useState<CryptoPrice[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: price < 1 ? 4 : 2,
+      maximumFractionDigits: price < 1 ? 6 : 2
+    }).format(price);
+  };
+
+  const formatChange = (change: number) => {
+    return `${change >= 0 ? '+' : ''}${change.toFixed(2)}%`;
+  };
+
   useEffect(() => {
     const fetchPrices = async () => {
       try {
         setLoading(true);
-        const data = await cryptoPriceService.getMultiplePrices();
-        setPrices(data.slice(0, 10)); // Top 10 cryptos
+        const response = await fetch('/api/crypto?source=multiple');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.prices) {
+            setPrices(data.prices.slice(0, 6));
+          }
+        }
         setLastUpdate(new Date());
       } catch (error) {
         console.error('Erro ao buscar preços:', error);
@@ -23,13 +46,16 @@ export default function CryptoPrices() {
       }
     };
 
-    // Busca inicial
-    fetchPrices();
+    // Busca inicial após 1 segundo
+    const timer = setTimeout(fetchPrices, 1000);
 
     // Atualiza a cada 60 segundos
     const interval = setInterval(fetchPrices, 60000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   if (loading && prices.length === 0) {
@@ -79,7 +105,7 @@ export default function CryptoPrices() {
             </div>
             <div className="flex items-center gap-3">
               <span className="text-white font-bold">
-                {cryptoPriceService.formatPrice(crypto.price)}
+                {formatPrice(crypto.price)}
               </span>
               {crypto.change24h !== 0 && (
                 <span 
@@ -94,7 +120,7 @@ export default function CryptoPrices() {
                   ) : (
                     <TrendingDown className="w-3 h-3" />
                   )}
-                  {cryptoPriceService.formatChange(crypto.change24h)}
+                  {formatChange(crypto.change24h)}
                 </span>
               )}
             </div>
