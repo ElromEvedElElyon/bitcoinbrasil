@@ -14,7 +14,6 @@ import {
   Globe,
   Zap
 } from 'lucide-react';
-import { cryptoPriceService } from '@/lib/crypto-prices';
 
 interface CryptoData {
   symbol: string;
@@ -47,35 +46,29 @@ export default function MercadoAoVivo() {
   const [autoRefresh, setAutoRefresh] = useState(true);
 
   const fetchRealPrices = async () => {
+    if (loading) return; // Evita múltiplas chamadas
+    
     try {
       setLoading(true);
       
-      // Usa o serviço de preços como no componente da home
-      const data = await cryptoPriceService.getMultiplePrices();
+      // Tenta nossa API route primeiro (mais rápido e confiável)
+      const response = await fetch('/api/crypto?source=multiple');
       
-      if (data && data.length > 0) {
-        // Atualiza com dados reais do serviço
-        setCryptos(data.slice(0, 10));
-      } else {
-        // Se falhar, tenta nossa API route
-        const response = await fetch('/api/crypto?source=multiple');
+      if (response.ok) {
+        const apiData = await response.json();
         
-        if (response.ok) {
-          const apiData = await response.json();
-          
-          if (apiData.prices && apiData.prices.length > 0) {
-            setCryptos(prev => prev.map((crypto) => {
-              const apiPrice = apiData.prices.find((p: {symbol: string, price: number}) => p.symbol === crypto.symbol);
-              if (apiPrice && apiPrice.price > 0) {
-                return {
-                  ...crypto,
-                  price: apiPrice.price,
-                  change24h: (Math.random() * 10 - 5)
-                };
-              }
-              return crypto;
-            }));
-          }
+        if (apiData.prices && apiData.prices.length > 0) {
+          setCryptos(prev => prev.map((crypto) => {
+            const apiPrice = apiData.prices.find((p: {symbol: string, price: number}) => p.symbol === crypto.symbol);
+            if (apiPrice && apiPrice.price > 0) {
+              return {
+                ...crypto,
+                price: apiPrice.price,
+                change24h: (Math.random() * 10 - 5)
+              };
+            }
+            return crypto;
+          }));
         }
       }
       
@@ -88,18 +81,23 @@ export default function MercadoAoVivo() {
   };
 
   useEffect(() => {
-    // Busca inicial
-    fetchRealPrices();
+    // Busca inicial após 1 segundo
+    const timeout = setTimeout(() => {
+      fetchRealPrices();
+    }, 1000);
     
-    // Atualiza a cada 60 segundos quando autoRefresh está ativo
-    let interval: NodeJS.Timeout;
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    // Configura intervalo baseado no autoRefresh
     if (autoRefresh) {
-      interval = setInterval(fetchRealPrices, 60000);
+      const interval = setInterval(() => {
+        fetchRealPrices();
+      }, 60000);
+      
+      return () => clearInterval(interval);
     }
-    
-    return () => {
-      if (interval) clearInterval(interval);
-    };
   }, [autoRefresh]);
 
   const formatPrice = (price: number) => {
