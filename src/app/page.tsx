@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TrendingUp, Users, BarChart3, Sparkles, Zap, Globe, Shield, Rocket, Star } from "lucide-react";
 import CryptoPrices from '@/components/CryptoPrices';
+import DynamicNews from '@/components/DynamicNews';
 
 export default function Home() {
   return (
@@ -100,51 +101,8 @@ export default function Home() {
                   </h2>
                 </div>
                 
-                <div className="p-6 space-y-6">
-                  <article className="glass-dark rounded-2xl p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <span className="bg-aurora-pink text-white text-xs font-bold px-3 py-1 rounded-full">
-                        URGENTE
-                      </span>
-                      <span className="text-sm text-gray-400">Há 2 horas</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      Bitcoin atinge nova máxima histórica em 2025
-                    </h3>
-                    <p className="text-gray-400">
-                      Análise completa do movimento de preços e o que esperar para os próximos meses...
-                    </p>
-                  </article>
-
-                  <article className="glass-dark rounded-2xl p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <span className="bg-aurora-cyan text-white text-xs font-bold px-3 py-1 rounded-full">
-                        AI
-                      </span>
-                      <span className="text-sm text-gray-400">Há 5 horas</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      AI Agents revolucionam trading de criptomoedas
-                    </h3>
-                    <p className="text-gray-400">
-                      Como a inteligência artificial está transformando o mercado crypto...
-                    </p>
-                  </article>
-
-                  <article className="glass-dark rounded-2xl p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <span className="bg-aurora-purple text-white text-xs font-bold px-3 py-1 rounded-full">
-                        ETH
-                      </span>
-                      <span className="text-sm text-gray-400">Há 8 horas</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      Ethereum 3.0: Nova atualização promete velocidade 100x maior
-                    </h3>
-                    <p className="text-gray-400">
-                      Vitalik Buterin anuncia roadmap revolucionário para a rede Ethereum...
-                    </p>
-                  </article>
+                <div className="p-6">
+                  <DynamicNews limit={3} showTwitter={true} />
                 </div>
               </div>
             </div>
