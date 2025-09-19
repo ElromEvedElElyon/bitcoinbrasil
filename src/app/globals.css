@@ -1,6 +1,40 @@
 @import "tailwindcss";
 
 :root {
+  /* Standard Bitcoin Color Palette */
+  --primary-orange: #FF6B35;
+  --primary-dark: #1A1A2E;
+  --secondary-dark: #16213E;
+  --accent-blue: #0F3460;
+  --accent-purple: #533483;
+  --text-light: #E8E8E8;
+  --text-muted: #A0A0A0;
+  --gradient-start: #FF6B35;
+  --gradient-end: #533483;
+}
+
+/* Custom gradients from Standard Bitcoin */
+.gradient-standard {
+  background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-purple) 100%);
+}
+
+.bg-standard-dark {
+  background-color: var(--primary-dark);
+}
+
+.bg-standard-secondary {
+  background-color: var(--secondary-dark);
+}
+
+.text-standard-orange {
+  color: var(--primary-orange);
+}
+
+.border-standard-orange {
+  border-color: var(--primary-orange);
+}
+
+:root {
   --background: #ffffff;
   --foreground: #171717;
   --bitcoin-orange: #f7931a;
