@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TrendingUp, Brain, Users, BarChart3, Sparkles, Zap, Globe, Shield, Rocket, Star } from "lucide-react";
+import { TrendingUp, Users, BarChart3, Sparkles, Zap, Globe, Shield, Rocket, Star } from "lucide-react";
 
 export default function Home() {
   return (
