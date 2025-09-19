@@ -1,5 +1,10 @@
+'use client';
+
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { ExternalLink, User, LogOut, Settings } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import AuthModal from "@/components/AuthModal";
 
 interface HeaderProps {
   title?: string;
@@ -12,6 +17,9 @@ export default function Header({
   showBackLink = false,
   color = "orange" 
 }: HeaderProps) {
+  const { user, isAuthenticated, logout } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const colorClasses = {
     orange: {
       text: "text-standard-orange",
@@ -49,7 +57,7 @@ export default function Header({
             )}
             <h1 className={`text-2xl font-bold text-white`}>{title}</h1>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex items-center space-x-4">
             <a 
               href="https://yuotube.ai" 
               target="_blank"
@@ -66,9 +74,58 @@ export default function Header({
             >
               Standard Bitcoin <ExternalLink size={14} />
             </a>
+            
+            {/* Authentication Section */}
+            <div className="relative">
+              {isAuthenticated ? (
+                <div>
+                  <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    className="flex items-center space-x-2 bg-standard-secondary text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity border border-standard-orange"
+                  >
+                    <User size={18} />
+                    <span className="text-sm font-semibold">{user?.username}</span>
+                  </button>
+                  
+                  {showUserMenu && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-standard-dark rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
+                      <Link
+                        href="/auth-demo"
+                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-t-lg"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        <Settings className="inline mr-2" size={16} />
+                        Configurações
+                      </Link>
+                      <button
+                        onClick={async () => {
+                          await logout();
+                          setShowUserMenu(false);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-b-lg"
+                      >
+                        <LogOut className="inline mr-2" size={16} />
+                        Sair
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowAuthModal(true)}
+                  className="flex items-center space-x-2 bg-white text-standard-orange px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors font-semibold"
+                >
+                  <User size={18} />
+                  <span className="text-sm">Entrar</span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
+      
+      {/* Auth Modal */}
+      <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
     </header>
   );
 }

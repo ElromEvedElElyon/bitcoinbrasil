@@ -1,37 +1,172 @@
 @import "tailwindcss";
 
 :root {
-  /* Standard Bitcoin Color Palette */
+  /* Aurora Borealis Inspired Palette */
+  --aurora-cyan: #00D9FF;
+  --aurora-purple: #BD00FF;
+  --aurora-pink: #FF006E;
+  --aurora-green: #00FF88;
+  --aurora-blue: #0096FF;
+  --aurora-indigo: #4B0082;
+  --aurora-dark: #0A0E27;
+  --aurora-darker: #050714;
+  --aurora-light: #1A1F3A;
+  --text-light: #F0F4FF;
+  --text-muted: #B8C5E0;
+  --glass-white: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  
+  /* Keep Standard Bitcoin colors as secondary */
   --primary-orange: #FF6B35;
-  --primary-dark: #1A1A2E;
-  --secondary-dark: #16213E;
-  --accent-blue: #0F3460;
   --accent-purple: #533483;
-  --text-light: #E8E8E8;
-  --text-muted: #A0A0A0;
-  --gradient-start: #FF6B35;
-  --gradient-end: #533483;
 }
 
-/* Custom gradients from Standard Bitcoin */
+/* Aurora Borealis Gradients */
+.gradient-aurora {
+  background: linear-gradient(135deg, #00D9FF 0%, #BD00FF 25%, #FF006E 50%, #00FF88 75%, #0096FF 100%);
+  background-size: 400% 400%;
+  animation: aurora-shift 15s ease infinite;
+}
+
+.gradient-aurora-subtle {
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.3) 0%, rgba(189, 0, 255, 0.3) 50%, rgba(255, 0, 110, 0.3) 100%);
+}
+
+.gradient-aurora-dark {
+  background: linear-gradient(180deg, #0A0E27 0%, #1A1F3A 50%, #0A0E27 100%);
+}
+
+/* Animated Aurora Effect */
+@keyframes aurora-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism Effects */
+.glass {
+  background: var(--glass-white);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-dark {
+  background: rgba(10, 14, 39, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(189, 0, 255, 0.2);
+}
+
+/* Modern Rounded Buttons */
+.btn-aurora {
+  background: linear-gradient(135deg, #00D9FF, #BD00FF);
+  color: white;
+  border-radius: 9999px;
+  padding: 12px 32px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(189, 0, 255, 0.3);
+}
+
+.btn-aurora:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(189, 0, 255, 0.5);
+}
+
+.btn-glass {
+  background: var(--glass-white);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-light);
+  border-radius: 9999px;
+  padding: 12px 32px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--aurora-cyan);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+}
+
+/* Neumorphism Cards */
+.card-aurora {
+  background: linear-gradient(145deg, rgba(26, 31, 58, 0.9), rgba(10, 14, 39, 0.9));
+  border-radius: 24px;
+  box-shadow: 
+    20px 20px 60px rgba(5, 7, 20, 0.5),
+    -20px -20px 60px rgba(26, 31, 58, 0.3),
+    inset 0 0 0 1px rgba(189, 0, 255, 0.1);
+}
+
+/* Aurora Text Effects */
+.text-aurora {
+  background: linear-gradient(90deg, #00D9FF, #BD00FF, #FF006E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: text-shine 3s linear infinite;
+}
+
+@keyframes text-shine {
+  to { background-position: 200% center; }
+}
+
+/* Updated color classes */
+.bg-aurora-dark {
+  background-color: var(--aurora-dark);
+}
+
+.bg-aurora-darker {
+  background-color: var(--aurora-darker);
+}
+
+.bg-aurora-light {
+  background-color: var(--aurora-light);
+}
+
+.text-aurora-cyan {
+  color: var(--aurora-cyan);
+}
+
+.text-aurora-purple {
+  color: var(--aurora-purple);
+}
+
+.text-aurora-pink {
+  color: var(--aurora-pink);
+}
+
+.border-aurora-cyan {
+  border-color: var(--aurora-cyan);
+}
+
+.border-aurora-purple {
+  border-color: var(--aurora-purple);
+}
+
+/* Keep Standard Bitcoin classes for compatibility */
 .gradient-standard {
   background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-purple) 100%);
 }
 
 .bg-standard-dark {
-  background-color: var(--primary-dark);
+  background-color: var(--aurora-dark);
 }
 
 .bg-standard-secondary {
-  background-color: var(--secondary-dark);
+  background-color: var(--aurora-light);
 }
 
 .text-standard-orange {
-  color: var(--primary-orange);
+  color: var(--aurora-cyan);
 }
 
 .border-standard-orange {
-  border-color: var(--primary-orange);
+  border-color: var(--aurora-cyan);
 }
 
 :root {

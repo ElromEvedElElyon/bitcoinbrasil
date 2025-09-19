@@ -1,244 +1,267 @@
+'use client';
+
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
+import CryptoTicker from "@/components/CryptoTicker";
 import Link from "next/link";
-import { TrendingUp, Brain, Users, BarChart3 } from "lucide-react";
+import { TrendingUp, Brain, Users, BarChart3, Sparkles, Zap, Globe, Shield, Rocket, Star } from "lucide-react";
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-standard-dark">
-      <Header />
+    <div className="min-h-screen bg-aurora-darker">
+      {/* Aurora Background Effect */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="gradient-aurora opacity-30 absolute inset-0"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-aurora-cyan blur-[150px] opacity-20 rounded-full"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-aurora-purple blur-[150px] opacity-20 rounded-full"></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-aurora-pink blur-[150px] opacity-10 rounded-full"></div>
+      </div>
 
-      {/* Hero Section */}
-      <div className="gradient-standard text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-5xl font-bold mb-6">
-                Bitcoin Brasil
-              </h1>
-              <p className="text-xl mb-8">
-                Seu portal definitivo para notícias sobre Bitcoin, criptomoedas, AI agents e o futuro das finanças digitais.
-              </p>
-              <div className="flex space-x-4">
-                <Link href="/noticias" className="bg-white text-standard-orange px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
-                  Ler Notícias
-                </Link>
-                <Link href="/mercado" className="bg-standard-secondary text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity border border-standard-orange">
-                  Ver Mercado
-                </Link>
+      <div className="relative z-10">
+        <Header />
+
+        {/* Hero Section with Aurora Theme */}
+        <div className="relative overflow-hidden">
+          <div className="gradient-aurora-subtle py-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div className="md:w-1/2 space-y-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full">
+                    <Sparkles className="w-4 h-4 text-aurora-cyan" />
+                    <span className="text-sm font-medium text-white">Portal #1 de Crypto no Brasil</span>
+                  </div>
+                  
+                  <h1 className="text-5xl md:text-6xl font-bold">
+                    <span className="text-aurora">Bitcoin Brasil</span>
+                  </h1>
+                  
+                  <p className="text-xl text-gray-300 leading-relaxed">
+                    Seu portal definitivo para notícias sobre Bitcoin, criptomoedas, AI agents e o futuro das finanças digitais.
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-4">
+                    <Link href="/noticias" className="btn-aurora inline-flex items-center gap-2 group">
+                      <Zap className="w-5 h-5 group-hover:animate-pulse" />
+                      Explorar Notícias
+                    </Link>
+                    <Link href="/mercado" className="btn-glass inline-flex items-center gap-2">
+                      <BarChart3 className="w-5 h-5" />
+                      Mercado ao Vivo
+                    </Link>
+                  </div>
+
+                  {/* Trust Badges */}
+                  <div className="flex flex-wrap gap-6 pt-4">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <Shield className="w-4 h-4 text-aurora-green" />
+                      <span>SSL Seguro</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <Globe className="w-4 h-4 text-aurora-blue" />
+                      <span>7 Idiomas</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <Star className="w-4 h-4 text-aurora-pink" />
+                      <span>1000+ Artigos</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Interactive Card */}
+                <div className="md:w-1/2 flex justify-center">
+                  <div className="card-aurora p-8 text-white max-w-md w-full transform hover:scale-105 transition-transform duration-300">
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-2xl font-bold">STBTCx Token</h3>
+                      <Rocket className="w-8 h-8 text-aurora-cyan animate-pulse" />
+                    </div>
+                    
+                    <p className="mb-6 text-gray-300">
+                      A revolução das memecoins na Solana. Junte-se à comunidade que está transformando o futuro das finanças descentralizadas.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <a 
+                        href="https://yuotube.ai" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="glass rounded-2xl p-4 hover:bg-white/20 transition-all group"
+                      >
+                        <div className="font-semibold mb-1 group-hover:text-aurora-cyan transition-colors">
+                          YuoTube.ai
+                        </div>
+                        <div className="text-sm text-gray-400">Plataforma AI</div>
+                      </a>
+                      <a 
+                        href="https://standardbitcoin.io" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="glass rounded-2xl p-4 hover:bg-white/20 transition-all group"
+                      >
+                        <div className="font-semibold mb-1 group-hover:text-aurora-purple transition-colors">
+                          Standard Bitcoin
+                        </div>
+                        <div className="text-sm text-gray-400">Dashboard</div>
+                      </a>
+                    </div>
+                    
+                    <div className="mt-6 pt-6 border-t border-gray-700">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-400">Powered by Solana</span>
+                        <div className="flex gap-2">
+                          <div className="w-2 h-2 bg-aurora-green rounded-full animate-pulse"></div>
+                          <div className="w-2 h-2 bg-aurora-cyan rounded-full animate-pulse delay-75"></div>
+                          <div className="w-2 h-2 bg-aurora-purple rounded-full animate-pulse delay-150"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="md:w-1/2 flex justify-center">
-              <div className="gradient-standard rounded-xl p-6 text-white">
-                <h3 className="text-2xl font-bold mb-4">STBTCx Token</h3>
-                <p className="mb-4">A revolução das memecoins na Solana</p>
-                <div className="grid grid-cols-2 gap-4">
-                  <a 
-                    href="https://yuotube.ai" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block bg-white/20 rounded p-3 hover:bg-white/30 transition-colors"
-                  >
-                    <div className="font-semibold">YuoTube.ai</div>
-                    <div className="text-sm opacity-90">Plataforma AI</div>
-                  </a>
-                  <a 
-                    href="https://standardbitcoin.io" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block bg-white/20 rounded p-3 hover:bg-white/30 transition-colors"
-                  >
-                    <div className="font-semibold">Standard Bitcoin</div>
-                    <div className="text-sm opacity-90">Dashboard Analytics</div>
-                  </a>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Column */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Featured News */}
+              <section className="card-aurora">
+                <div className="gradient-aurora p-6 rounded-t-3xl">
+                  <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                    <TrendingUp className="w-6 h-6" />
+                    Notícias em Destaque
+                  </h2>
+                </div>
+                
+                <div className="p-6 space-y-6">
+                  {[
+                    {
+                      title: "Bitcoin atinge nova máxima histórica em 2025",
+                      description: "Análise completa do movimento de preços e o que esperar para os próximos meses com a adoção institucional crescente...",
+                      time: "Há 2 horas",
+                      tag: "URGENTE",
+                      tagColor: "bg-aurora-pink"
+                    },
+                    {
+                      title: "AI Agents revolucionam trading de criptomoedas",
+                      description: "Como a inteligência artificial está transformando o mercado crypto com estratégias automatizadas avançadas...",
+                      time: "Há 5 horas",
+                      tag: "AI",
+                      tagColor: "bg-aurora-cyan"
+                    },
+                    {
+                      title: "Ethereum 3.0: Nova atualização promete velocidade 100x maior",
+                      description: "Vitalik Buterin anuncia roadmap revolucionário para a rede Ethereum com sharding e zero-knowledge proofs...",
+                      time: "Há 8 horas",
+                      tag: "ETH",
+                      tagColor: "bg-aurora-purple"
+                    },
+                    {
+                      title: "Brasil lidera adoção de Bitcoin na América Latina",
+                      description: "Relatório mostra crescimento de 300% no volume de transações em 2024...",
+                      time: "Há 12 horas",
+                      tag: "BRASIL",
+                      tagColor: "bg-aurora-green"
+                    }
+                  ].map((news, index) => (
+                    <article key={index} className="glass-dark rounded-2xl p-6 hover:scale-[1.01] transition-transform">
+                      <Link href="/noticias" className="group">
+                        <div className="flex items-start justify-between mb-3">
+                          <span className={`${news.tagColor} text-white text-xs font-bold px-3 py-1 rounded-full`}>
+                            {news.tag}
+                          </span>
+                          <span className="text-sm text-gray-400">{news.time}</span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-white group-hover:text-aurora-cyan transition-colors mb-2">
+                          {news.title}
+                        </h3>
+                        <p className="text-gray-400 line-clamp-2">
+                          {news.description}
+                        </p>
+                      </Link>
+                    </article>
+                  ))}
+                </div>
+                
+                <div className="p-6 border-t border-gray-700">
+                  <Link href="/noticias" className="flex items-center justify-center gap-2 text-aurora-cyan hover:text-aurora-purple transition-colors font-medium">
+                    Ver todas as notícias
+                    <TrendingUp className="w-4 h-4" />
+                  </Link>
+                </div>
+              </section>
+
+              {/* AI Agents Section */}
+              <section className="card-aurora">
+                <div className="gradient-aurora p-6 rounded-t-3xl">
+                  <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                    <Brain className="w-6 h-6" />
+                    AI Agents & Automação
+                  </h2>
+                </div>
+                
+                <div className="p-6">
+                  <p className="text-gray-300 mb-6">
+                    Explore o futuro do trading automatizado com AI agents avançados.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {[
+                      { name: "ChatGPT", status: "Online", color: "text-aurora-green" },
+                      { name: "Gemini", status: "Beta", color: "text-aurora-cyan" },
+                      { name: "Claude", status: "Premium", color: "text-aurora-purple" }
+                    ].map((agent) => (
+                      <div key={agent.name} className="glass rounded-2xl p-4 text-center hover:bg-white/10 transition-colors">
+                        <div className="text-lg font-bold text-white mb-1">{agent.name}</div>
+                        <div className={`text-sm font-medium ${agent.color}`}>{agent.status}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            {/* Sidebar with Crypto Ticker */}
+            <div className="space-y-8">
+              {mounted && <CryptoTicker />}
+              
+              {/* Quick Stats */}
+              <div className="card-aurora p-6">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-aurora-cyan" />
+                  Comunidade Global
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Usuários Ativos</span>
+                    <span className="text-white font-bold">1.2M+</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Artigos Publicados</span>
+                    <span className="text-white font-bold">1,001</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">AI Agents</span>
+                    <span className="text-white font-bold">7</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Idiomas</span>
+                    <span className="text-white font-bold">7</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Column */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Featured News */}
-            <section className="bg-white rounded-xl shadow-lg p-6 border-2 border-standard-orange">
-              <h2 className="text-2xl font-bold mb-6 text-standard-orange flex items-center">
-                <TrendingUp className="mr-2" />
-                Notícias em Destaque
-              </h2>
-              <div className="space-y-4">
-                <article className="border-b pb-4">
-                  <Link href="/noticias" className="group">
-                    <h3 className="text-xl font-semibold group-hover:text-standard-orange transition-colors">
-                      Bitcoin atinge nova máxima histórica em 2025
-                    </h3>
-                    <p className="text-gray-600 mt-2">
-                      Análise completa do movimento de preços e o que esperar para os próximos meses...
-                    </p>
-                    <span className="text-sm text-gray-500">Há 2 horas</span>
-                  </Link>
-                </article>
-                <article className="border-b pb-4">
-                  <Link href="/noticias" className="group">
-                    <h3 className="text-xl font-semibold group-hover:text-standard-orange transition-colors">
-                      AI Agents revolucionam trading de criptomoedas
-                    </h3>
-                    <p className="text-gray-600 mt-2">
-                      Como a inteligência artificial está transformando o mercado crypto...
-                    </p>
-                    <span className="text-sm text-gray-500">Há 5 horas</span>
-                  </Link>
-                </article>
-              </div>
-              <Link href="/noticias" className="text-standard-orange hover:underline block mt-4">
-                Ver todas as notícias →
-              </Link>
-            </section>
-
-            {/* Market Data */}
-            <section className="bg-white rounded-xl shadow-lg p-6 border-2 border-standard-orange">
-              <h2 className="text-2xl font-bold mb-6 text-standard-orange flex items-center">
-                <BarChart3 className="mr-2" />
-                Mercado Crypto
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg p-4 text-white">
-                  <h4 className="font-semibold">Bitcoin</h4>
-                  <p className="text-2xl font-bold">$98,450</p>
-                  <p className="text-sm">+5.3% (24h)</p>
-                </div>
-                <div className="bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg p-4 text-white">
-                  <h4 className="font-semibold">Ethereum</h4>
-                  <p className="text-2xl font-bold">$3,890</p>
-                  <p className="text-sm">+3.2% (24h)</p>
-                </div>
-                <div className="gradient-standard rounded-lg p-4 text-white">
-                  <h4 className="font-semibold">Solana</h4>
-                  <p className="text-2xl font-bold">$185</p>
-                  <p className="text-sm">+8.7% (24h)</p>
-                </div>
-              </div>
-              <Link href="/mercado" className="text-standard-orange hover:underline block mt-4">
-                Análise completa do mercado →
-              </Link>
-            </section>
-
-            {/* AI Agents */}
-            <section className="bg-white rounded-xl shadow-lg p-6 border-2 border-standard-orange">
-              <h2 className="text-2xl font-bold mb-6 text-standard-orange flex items-center">
-                <Brain className="mr-2" />
-                AI Agents
-              </h2>
-              <p className="text-gray-600 mb-4">
-                Descubra como agentes de inteligência artificial estão revolucionando o trading de criptomoedas.
-              </p>
-              <Link href="/ai-agents" className="text-standard-orange hover:underline">
-                Explorar AI Agents →
-              </Link>
-            </section>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-8">
-            {/* Community Memes */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-standard-orange">
-              <div className="flex items-center mb-4">
-                <Users className="text-standard-orange mr-2" size={20} />
-                <h4 className="font-bold">Memes da Comunidade</h4>
-              </div>
-              <div className="space-y-3">
-                <div className="bg-gray-50 rounded p-3">
-                  <p className="text-sm">&quot;HODL até a lua! 🚀&quot;</p>
-                  <span className="text-xs text-gray-500">@cryptobrasil</span>
-                </div>
-                <div className="bg-gray-50 rounded p-3">
-                  <p className="text-sm">&quot;Bitcoin é o futuro do dinheiro 💰&quot;</p>
-                  <span className="text-xs text-gray-500">@bitcoinmaxi</span>
-                </div>
-              </div>
-              <Link href="/memes" className="text-standard-orange hover:underline block mt-4">
-                Ver mais memes →
-              </Link>
-            </div>
-
-            {/* Authority Sites */}
-            <div className="gradient-standard rounded-xl p-6 text-white">
-              <h4 className="font-bold mb-4">Sites de Referência</h4>
-              <div className="space-y-3">
-                <a 
-                  href="https://yuotube.ai" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-white/20 rounded p-3 hover:bg-white/30 transition-colors"
-                >
-                  <div className="font-semibold">YuoTube.ai</div>
-                  <div className="text-sm opacity-90">Plataforma AI completa</div>
-                </a>
-                <a 
-                  href="https://standardbitcoin.io" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-white/20 rounded p-3 hover:bg-white/30 transition-colors"
-                >
-                  <div className="font-semibold">Standard Bitcoin</div>
-                  <div className="text-sm opacity-90">Protocolo Bitcoin padrão</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-standard-dark text-white py-8 border-t-2 border-standard-orange">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h5 className="font-bold mb-4 text-standard-orange">Bitcoin Brasil</h5>
-              <p className="text-gray-400 text-sm">
-                Seu portal completo para notícias e análises do mercado crypto brasileiro.
-              </p>
-            </div>
-            <div>
-              <h6 className="font-semibold mb-3">Seções</h6>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/noticias" className="text-gray-400 hover:text-standard-orange">Notícias</Link></li>
-                <li><Link href="/mercado" className="text-gray-400 hover:text-standard-orange">Mercado</Link></li>
-                <li><Link href="/ai-agents" className="text-gray-400 hover:text-standard-orange">AI Agents</Link></li>
-                <li><Link href="/memes" className="text-gray-400 hover:text-standard-orange">Memes</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h6 className="font-semibold mb-3">Sites Parceiros</h6>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="https://yuotube.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-standard-orange">
-                    YuoTube.ai
-                  </a>
-                </li>
-                <li>
-                  <a href="https://standardbitcoin.io" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-standard-orange">
-                    Standard Bitcoin
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h6 className="font-semibold mb-3">Comunidade</h6>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-standard-orange">Twitter/X</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-standard-orange">Telegram</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-standard-orange">Discord</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-standard-orange/30 text-center text-gray-400 text-sm">
-            © 2025 Bitcoin Brasil. Todos os direitos reservados. | Powered by AI
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

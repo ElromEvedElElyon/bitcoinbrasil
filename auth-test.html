@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Brasil - Teste de Autenticação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #FF5E00 0%, #FF8533 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #FF5E00;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #FF5E00;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #FF5E00 0%, #FF8533 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 10px;
+            background: #f5f5f5;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            border-color: #FF5E00;
+            color: #FF5E00;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .user-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .user-info h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .user-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .user-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .user-detail .label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .user-detail .value {
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .feature-badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Bitcoin Brasil Auth</h1>
+        <p class="subtitle">Sistema de autenticação sem cookies (JWT + localStorage)</p>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('login')">Entrar</div>
+            <div class="tab" onclick="switchTab('register')">Registrar</div>
+        </div>
+        
+        <div id="message"></div>
+        
+        <form id="authForm">
+            <div id="usernameGroup" class="form-group" style="display: none;">
+                <label for="username">Nome de Usuário</label>
+                <input type="text" id="username" name="username">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div id="languageGroup" class="form-group" style="display: none;">
+                <label for="language">Idioma</label>
+                <select id="language" name="language" style="width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;">
+                    <option value="pt">Português</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                </select>
+            </div>
+            
+            <button type="submit" id="submitBtn">Entrar</button>
+        </form>
+        
+        <div id="userInfo" style="display: none;"></div>
+    </div>
+    
+    <script>
+        const API_URL = 'http://localhost:3001';
+        let currentMode = 'login';
+        let currentUser = null;
+        
+        // Check if user is already logged in
+        checkAuth();
+        
+        function checkAuth() {
+            const token = localStorage.getItem('btc_brasil_access_token');
+            if (token) {
+                // Try to get user profile
+                fetch(`${API_URL}/api/user/profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(res => {
+                    if (res.ok) return res.json();
+                    throw new Error('Invalid token');
+                })
+                .then(user => {
+                    currentUser = user;
+                    showUserInfo();
+                })
+                .catch(() => {
+                    localStorage.removeItem('btc_brasil_access_token');
+                    localStorage.removeItem('btc_brasil_refresh_token');
+                });
+            }
+        }
+        
+        function switchTab(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const usernameGroup = document.getElementById('usernameGroup');
+            const languageGroup = document.getElementById('languageGroup');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (mode === 'register') {
+                usernameGroup.style.display = 'block';
+                languageGroup.style.display = 'block';
+                submitBtn.textContent = 'Registrar';
+            } else {
+                usernameGroup.style.display = 'none';
+                languageGroup.style.display = 'none';
+                submitBtn.textContent = 'Entrar';
+            }
+            
+            clearMessage();
+        }
+        
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+        }
+        
+        function clearMessage() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.style.display = 'none';
+        }
+        
+        function showUserInfo() {
+            document.getElementById('authForm').style.display = 'none';
+            document.querySelector('.tabs').style.display = 'none';
+            
+            const userInfoDiv = document.getElementById('userInfo');
+            userInfoDiv.style.display = 'block';
+            userInfoDiv.innerHTML = `
+                <div class="user-info">
+                    <h3>👤 Usuário Autenticado</h3>
+                    <div class="user-detail">
+                        <span class="label">Nome:</span>
+                        <span class="value">${currentUser.username}</span>
+                    </div>
+                    <div class="user-detail">
+                        <span class="label">Email:</span>
+                        <span class="value">${currentUser.email}</span>
+                    </div>
+                    <div class="user-detail">
+                        <span class="label">Idioma:</span>
+                        <span class="value">${currentUser.language.toUpperCase()}</span>
+                    </div>
+                    <div class="user-detail">
+                        <span class="label">Tema:</span>
+                        <span class="value">${currentUser.preferences?.theme || 'dark'}</span>
+                    </div>
+                    <div class="user-detail">
+                        <span class="label">Status:</span>
+                        <span class="value">
+                            Ativo
+                            <span class="feature-badge">JWT Válido</span>
+                        </span>
+                    </div>
+                </div>
+                <button onclick="logout()" style="margin-top: 20px;">Sair</button>
+            `;
+        }
+        
+        function logout() {
+            fetch(`${API_URL}/api/auth/logout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    refreshToken: localStorage.getItem('btc_brasil_refresh_token'),
+                    sessionId: localStorage.getItem('btc_brasil_session_id')
+                })
+            })
+            .finally(() => {
+                localStorage.removeItem('btc_brasil_access_token');
+                localStorage.removeItem('btc_brasil_refresh_token');
+                localStorage.removeItem('btc_brasil_session_id');
+                currentUser = null;
+                document.getElementById('authForm').style.display = 'block';
+                document.querySelector('.tabs').style.display = 'flex';
+                document.getElementById('userInfo').style.display = 'none';
+                showMessage('Logout realizado com sucesso!', 'success');
+            });
+        }
+        
+        document.getElementById('authForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearMessage();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            const endpoint = currentMode === 'login' ? '/api/auth/login' : '/api/auth/register';
+            
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Store tokens in localStorage (not cookies!)
+                    localStorage.setItem('btc_brasil_access_token', result.accessToken);
+                    localStorage.setItem('btc_brasil_refresh_token', result.refreshToken);
+                    localStorage.setItem('btc_brasil_session_id', result.sessionId);
+                    
+                    currentUser = result.user;
+                    showMessage(`${currentMode === 'login' ? 'Login' : 'Registro'} realizado com sucesso!`, 'success');
+                    
+                    setTimeout(() => {
+                        showUserInfo();
+                    }, 1000);
+                } else {
+                    showMessage(result.error || 'Erro na autenticação', 'error');
+                }
+            } catch (error) {
+                showMessage('Erro ao conectar com o servidor', 'error');
+            }
+        });
+    </script>
+</body>
+</html>
