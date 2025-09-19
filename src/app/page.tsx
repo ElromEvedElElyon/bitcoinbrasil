@@ -150,11 +150,11 @@ export default function Home() {
               </div>
               <div className="space-y-3">
                 <div className="bg-gray-50 rounded p-3">
-                  <p className="text-sm">"HODL até a lua! 🚀"</p>
+                  <p className="text-sm">&quot;HODL até a lua! 🚀&quot;</p>
                   <span className="text-xs text-gray-500">@cryptobrasil</span>
                 </div>
                 <div className="bg-gray-50 rounded p-3">
-                  <p className="text-sm">"Bitcoin é o futuro do dinheiro 💰"</p>
+                  <p className="text-sm">&quot;Bitcoin é o futuro do dinheiro 💰&quot;</p>
                   <span className="text-xs text-gray-500">@bitcoinmaxi</span>
                 </div>
               </div>
