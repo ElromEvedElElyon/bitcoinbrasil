@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TrendingUp, Users, BarChart3, Sparkles, Zap, Globe, Shield, Rocket, Star } from "lucide-react";
+import CryptoPrices from '@/components/CryptoPrices';
 
 export default function Home() {
   return (
@@ -150,26 +151,8 @@ export default function Home() {
 
             {/* Sidebar */}
             <div>
-              {/* Crypto Prices */}
-              <div className="card-aurora p-6 mb-8">
-                <h3 className="text-lg font-bold text-white mb-4">
-                  Mercado Crypto
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Bitcoin</span>
-                    <span className="text-white font-bold">$95,234</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Ethereum</span>
-                    <span className="text-white font-bold">$3,567</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Solana</span>
-                    <span className="text-white font-bold">$187</span>
-                  </div>
-                </div>
-              </div>
+              {/* Crypto Prices - Real-time from Binance & CoinGecko */}
+              <CryptoPrices />
 
               {/* STBTCx Card */}
               <div className="card-aurora p-6 mb-8">
