@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,6 +16,9 @@ export const metadata: Metadata = {
   title: "Bitcoin Brasil - Notícias Crypto, AI Agents e Memes",
   description: "Seu portal completo de notícias sobre Bitcoin, criptomoedas, AI agents e memes crypto. Fique por dentro do mercado digital brasileiro.",
   metadataBase: new URL('https://bitcoinbrasil.org'),
+  verification: {
+    google: 'google13c79b6c7d3c79fe',
+  },
   openGraph: {
     title: 'Bitcoin Brasil',
     description: 'Portal de notícias crypto e AI agents',
@@ -41,9 +43,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        {children}
       </body>
     </html>
   );
