@@ -43,27 +43,6 @@ export default function MercadoAoVivo() {
   const fetchRealPrices = async () => {
     try {
       setLoading(true);
-      
-      // Lista expandida de criptomoedas
-      const cryptoList = [
-        { symbol: 'BTC', id: 'bitcoin', name: 'Bitcoin' },
-        { symbol: 'ETH', id: 'ethereum', name: 'Ethereum' },
-        { symbol: 'BNB', id: 'binancecoin', name: 'BNB' },
-        { symbol: 'SOL', id: 'solana', name: 'Solana' },
-        { symbol: 'XRP', id: 'ripple', name: 'XRP' },
-        { symbol: 'ADA', id: 'cardano', name: 'Cardano' },
-        { symbol: 'AVAX', id: 'avalanche-2', name: 'Avalanche' },
-        { symbol: 'DOT', id: 'polkadot', name: 'Polkadot' },
-        { symbol: 'MATIC', id: 'matic-network', name: 'Polygon' },
-        { symbol: 'LINK', id: 'chainlink', name: 'Chainlink' },
-        { symbol: 'UNI', id: 'uniswap', name: 'Uniswap' },
-        { symbol: 'ATOM', id: 'cosmos', name: 'Cosmos' },
-        { symbol: 'LTC', id: 'litecoin', name: 'Litecoin' },
-        { symbol: 'FIL', id: 'filecoin', name: 'Filecoin' },
-        { symbol: 'ARB', id: 'arbitrum', name: 'Arbitrum' }
-      ];
-
-      const prices: CryptoData[] = [];
 
       // Busca dados via nossa API route para evitar CORS
       const apiResponse = await fetch('/api/crypto?source=multiple');
@@ -74,7 +53,7 @@ export default function MercadoAoVivo() {
         if (data.prices && data.prices.length > 0) {
           // Atualiza apenas os preços mantendo estrutura
           setCryptos(prev => prev.map(crypto => {
-            const newPrice = data.prices.find((p: any) => p.symbol === crypto.symbol);
+            const newPrice = data.prices.find((p: { symbol: string; price: number }) => p.symbol === crypto.symbol);
             if (newPrice) {
               return {
                 ...crypto,

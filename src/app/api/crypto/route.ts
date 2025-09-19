@@ -93,7 +93,7 @@ export async function GET(request: Request) {
                 price: parseFloat(data.price)
               });
             }
-          } catch (error) {
+          } catch {
             // Fallback para valores padrão se falhar
             const defaultPrices: Record<string, number> = {
               'BTC': 95000, 'ETH': 3500, 'BNB': 640, 'SOL': 185,
@@ -106,7 +106,7 @@ export async function GET(request: Request) {
             });
           }
         }
-      } catch (error) {
+      } catch {
         // Se tudo falhar, retorna valores de exemplo
         return NextResponse.json({ 
           prices: [
