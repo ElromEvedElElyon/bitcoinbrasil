@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "src/app/api/crypto/route.ts": {
+      "maxDuration": 10
+    }
+  },
+  "buildCommand": "npm install --legacy-peer-deps && npm run build",
+  "outputDirectory": ".next"
+}
