@@ -181,7 +181,7 @@ export default function Home() {
                   A revolução das memecoins na Solana.
                 </p>
                 <a 
-                  href="https://pump.fun"
+                  href="https://pump.fun/coin/386JZJtkvf43yoNawAHmHHeEhZWUTZ4UuJJtxC9fpump"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-aurora w-full text-center block"

@@ -31,7 +31,19 @@
 
 [[redirects]]
   from = "/stbtcx"
-  to = "https://pump.fun"
+  to = "https://pump.fun/coin/386JZJtkvf43yoNawAHmHHeEhZWUTZ4UuJJtxC9fpump"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/comprar"
+  to = "https://pump.fun/coin/386JZJtkvf43yoNawAHmHHeEhZWUTZ4UuJJtxC9fpump"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/buy"
+  to = "https://pump.fun/coin/386JZJtkvf43yoNawAHmHHeEhZWUTZ4UuJJtxC9fpump"
   status = 301
   force = true
 
