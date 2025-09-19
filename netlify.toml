@@ -1,0 +1,46 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/yuotube"
+  to = "https://yuotube.ai"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/youtube"
+  to = "https://yuotube.ai"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/standardbitcoin"
+  to = "https://standardbitcoin.io"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bitcoin"
+  to = "https://standardbitcoin.io"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/stbtcx"
+  to = "https://pump.fun"
+  status = 301
+  force = true
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
