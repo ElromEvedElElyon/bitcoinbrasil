@@ -57,8 +57,8 @@ export default function MercadoAoVivo() {
         
         // Se conseguir dados da API, atualiza apenas os preços
         if (data.prices && data.prices.length > 0) {
-          setCryptos(prev => prev.map((crypto, index) => {
-            const apiPrice = data.prices.find((p: any) => p.symbol === crypto.symbol);
+          setCryptos(prev => prev.map((crypto) => {
+            const apiPrice = data.prices.find((p: { symbol: string; price: number }) => p.symbol === crypto.symbol);
             if (apiPrice) {
               return {
                 ...crypto,
