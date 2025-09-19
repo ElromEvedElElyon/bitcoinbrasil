@@ -1,0 +1,33 @@
+# Bitcoin Brasil - robots.txt
+# Optimized for maximum indexing
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# ChatGPT / OpenAI
+User-agent: GPTBot
+Allow: /
+
+# Claude / Anthropic
+User-agent: Claude-Web
+Allow: /
+
+# Gemini / Google
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap location
+Sitemap: https://bitcoinbrasil.org/sitemap.xml

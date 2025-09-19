@@ -1,0 +1,382 @@
+{
+  "metadata": {
+    "title": "Bitcoin Brasil - Master Content Plan",
+    "description": "Comprehensive content strategy for 1001 pages across 7 languages focusing on AI + Crypto authority",
+    "totalPages": 1001,
+    "languages": ["pt", "en", "es", "fr", "de", "zh", "ja"],
+    "pagesPerLanguage": 143,
+    "createdDate": "2025-09-19",
+    "version": "1.0.0",
+    "brandMentions": {
+      "primary": "yuotube.ai",
+      "secondary": "standardbitcoin.io",
+      "strategy": "Natural integration in content, case studies, and examples"
+    }
+  },
+  "contentStrategy": {
+    "seoObjectives": [
+      "Become #1 authority for AI + Crypto content globally",
+      "Target high-volume, low-competition keywords",
+      "Create comprehensive topic clusters",
+      "Build massive internal linking network",
+      "Establish E-A-T (Expertise, Authoritativeness, Trustworthiness)"
+    ],
+    "contentPillars": [
+      "AI Trading & Automation",
+      "Crypto Education & Analysis",
+      "DeFi Innovation & Protocols",
+      "Blockchain Technology",
+      "Market Intelligence & Predictions",
+      "Security & Best Practices",
+      "Regulatory & Compliance"
+    ]
+  },
+  "categories": {
+    "ai-trading": {
+      "name": "AI Trading & Automation",
+      "description": "Advanced AI trading strategies, bots, and automation tools",
+      "targetPages": 200,
+      "keywordFocus": ["ai trading", "crypto bots", "automated trading", "machine learning crypto"],
+      "subcategories": [
+        "Trading Bots",
+        "AI Algorithms",
+        "Portfolio Management",
+        "Risk Management",
+        "Market Analysis",
+        "Backtesting",
+        "Strategy Development",
+        "Platform Reviews"
+      ]
+    },
+    "crypto-education": {
+      "name": "Crypto Education",
+      "description": "Comprehensive cryptocurrency education from basics to advanced",
+      "targetPages": 150,
+      "keywordFocus": ["crypto education", "bitcoin guide", "cryptocurrency tutorial"],
+      "subcategories": [
+        "Beginner Guides",
+        "Advanced Concepts",
+        "Technical Analysis",
+        "Fundamental Analysis",
+        "Investment Strategies",
+        "Wallet Security",
+        "Exchange Reviews",
+        "Tax Implications"
+      ]
+    },
+    "defi-protocols": {
+      "name": "DeFi & Protocols",
+      "description": "Decentralized Finance protocols, yield farming, and DeFi strategies",
+      "targetPages": 120,
+      "keywordFocus": ["defi", "yield farming", "liquidity mining", "dex"],
+      "subcategories": [
+        "Protocol Analysis",
+        "Yield Strategies",
+        "Liquidity Provision",
+        "Governance Tokens",
+        "Risk Assessment",
+        "Cross-chain DeFi",
+        "New Protocols",
+        "DeFi Tools"
+      ]
+    },
+    "blockchain-tech": {
+      "name": "Blockchain Technology",
+      "description": "Technical deep-dives into blockchain technology and innovations",
+      "targetPages": 100,
+      "keywordFocus": ["blockchain technology", "consensus mechanisms", "smart contracts"],
+      "subcategories": [
+        "Consensus Mechanisms",
+        "Smart Contracts",
+        "Layer 2 Solutions",
+        "Interoperability",
+        "Scalability",
+        "Privacy Solutions",
+        "Infrastructure",
+        "Development Tools"
+      ]
+    },
+    "market-intelligence": {
+      "name": "Market Intelligence",
+      "description": "Market analysis, predictions, and data-driven insights",
+      "targetPages": 150,
+      "keywordFocus": ["crypto market analysis", "price prediction", "market trends"],
+      "subcategories": [
+        "Price Analysis",
+        "Market Trends",
+        "On-chain Analytics",
+        "Sentiment Analysis",
+        "Macro Economics",
+        "Institutional Adoption",
+        "Regulatory Impact",
+        "Future Predictions"
+      ]
+    },
+    "security-practices": {
+      "name": "Security & Best Practices",
+      "description": "Comprehensive security guides and best practices",
+      "targetPages": 80,
+      "keywordFocus": ["crypto security", "wallet security", "best practices"],
+      "subcategories": [
+        "Wallet Security",
+        "Exchange Security",
+        "DeFi Security",
+        "Scam Prevention",
+        "Privacy Protection",
+        "Cold Storage",
+        "Multi-sig",
+        "Insurance"
+      ]
+    },
+    "news-analysis": {
+      "name": "News & Market Analysis",
+      "description": "Daily news, market updates, and real-time analysis",
+      "targetPages": 100,
+      "keywordFocus": ["crypto news", "bitcoin news", "market updates"],
+      "subcategories": [
+        "Daily News",
+        "Market Updates",
+        "Regulatory News",
+        "Technology Updates",
+        "Partnership News",
+        "Adoption News",
+        "Event Coverage",
+        "Interview Series"
+      ]
+    },
+    "tools-resources": {
+      "name": "Tools & Resources",
+      "description": "Comprehensive tools, calculators, and resource guides",
+      "targetPages": 100,
+      "keywordFocus": ["crypto tools", "bitcoin calculator", "trading tools"],
+      "subcategories": [
+        "Trading Tools",
+        "Portfolio Trackers",
+        "Tax Tools",
+        "Calculators",
+        "APIs",
+        "Educational Resources",
+        "Community Tools",
+        "Development Resources"
+      ]
+    }
+  },
+  "languageDistribution": {
+    "pt": {
+      "name": "Português (Brasil)",
+      "targetPages": 200,
+      "focus": "Primary market - comprehensive coverage of all topics",
+      "specialization": ["Brazil-specific content", "Portuguese crypto community", "Local exchanges"]
+    },
+    "en": {
+      "name": "English",
+      "targetPages": 200,
+      "focus": "Global audience - high-authority content",
+      "specialization": ["Global trends", "US/UK markets", "International regulations"]
+    },
+    "es": {
+      "name": "Español",
+      "targetPages": 150,
+      "focus": "Latin American markets",
+      "specialization": ["LATAM adoption", "Spanish-speaking crypto community", "Regional exchanges"]
+    },
+    "fr": {
+      "name": "Français",
+      "targetPages": 100,
+      "focus": "European market focus",
+      "specialization": ["EU regulations", "French crypto landscape", "European DeFi"]
+    },
+    "de": {
+      "name": "Deutsch",
+      "targetPages": 100,
+      "focus": "German-speaking regions",
+      "specialization": ["German regulations", "DACH market", "Technical content"]
+    },
+    "zh": {
+      "name": "中文",
+      "targetPages": 120,
+      "focus": "Chinese crypto community",
+      "specialization": ["Asian markets", "Chinese blockchain projects", "Regional trends"]
+    },
+    "ja": {
+      "name": "日本語",
+      "targetPages": 130,
+      "focus": "Japanese market",
+      "specialization": ["Japanese regulations", "Local exchanges", "Institutional adoption"]
+    }
+  },
+  "contentTypes": {
+    "guides": {
+      "description": "Comprehensive step-by-step guides",
+      "count": 300,
+      "avgWordCount": 2500,
+      "schemaType": "HowTo"
+    },
+    "analysis": {
+      "description": "In-depth market and technical analysis",
+      "count": 200,
+      "avgWordCount": 2000,
+      "schemaType": "Article"
+    },
+    "reviews": {
+      "description": "Platform, tool, and service reviews",
+      "count": 150,
+      "avgWordCount": 2200,
+      "schemaType": "Review"
+    },
+    "news": {
+      "description": "Daily news and market updates",
+      "count": 200,
+      "avgWordCount": 800,
+      "schemaType": "NewsArticle"
+    },
+    "tutorials": {
+      "description": "Technical tutorials and how-tos",
+      "count": 100,
+      "avgWordCount": 1800,
+      "schemaType": "LearningResource"
+    },
+    "comparison": {
+      "description": "Comparison articles and vs. content",
+      "count": 50,
+      "avgWordCount": 2500,
+      "schemaType": "ComparisonTable"
+    }
+  },
+  "seoStrategy": {
+    "keywordStrategy": {
+      "primary": "Target 1-3 primary keywords per page",
+      "secondary": "Include 3-5 secondary keywords naturally",
+      "longTail": "Focus on conversational and question-based queries",
+      "localization": "Adapt keywords for each language market"
+    },
+    "contentClusters": {
+      "pillarPages": "Create 50 comprehensive pillar pages (3000+ words)",
+      "clusterPages": "Build clusters of 10-20 related pages per pillar",
+      "internalLinking": "Strategic internal linking to boost page authority",
+      "topicCoverage": "Comprehensive coverage of each topic cluster"
+    },
+    "technicalSEO": {
+      "schemaMarkup": "Implement appropriate Schema.org markup for all page types",
+      "metaTags": "Optimized title tags, meta descriptions, and Open Graph tags",
+      "sitemap": "Comprehensive XML sitemaps for each language",
+      "hreflang": "Proper international SEO implementation",
+      "pageSpeed": "Optimize for Core Web Vitals",
+      "mobileFirst": "Mobile-first responsive design"
+    }
+  },
+  "contentPlan": {
+    "phase1": {
+      "name": "Foundation (Months 1-2)",
+      "pages": 200,
+      "focus": "Core pillar content and high-authority pages",
+      "priorities": [
+        "AI Trading comprehensive guides",
+        "Bitcoin and major crypto analysis",
+        "DeFi protocol reviews",
+        "Security best practices"
+      ]
+    },
+    "phase2": {
+      "name": "Expansion (Months 3-4)",
+      "pages": 300,
+      "focus": "Topic cluster completion and language expansion",
+      "priorities": [
+        "Complete topic clusters",
+        "Expand to all 7 languages",
+        "Add comparison content",
+        "Build tool reviews"
+      ]
+    },
+    "phase3": {
+      "name": "Authority Building (Months 5-6)",
+      "pages": 300,
+      "focus": "Advanced content and niche topics",
+      "priorities": [
+        "Advanced technical content",
+        "Niche market analysis",
+        "Emerging trend coverage",
+        "Expert interview series"
+      ]
+    },
+    "phase4": {
+      "name": "Dominance (Months 7-8)",
+      "pages": 201,
+      "focus": "Complete coverage and continuous updates",
+      "priorities": [
+        "Fill content gaps",
+        "Update existing content",
+        "Add multimedia content",
+        "Optimize for conversions"
+      ]
+    }
+  },
+  "brandIntegration": {
+    "yuotube.ai": {
+      "strategy": "Position as premier AI content platform for crypto education",
+      "mentions": "Natural integration in AI-related content, case studies, and examples",
+      "contentTypes": ["AI trading guides", "Educational videos", "Tutorial references"],
+      "frequency": "2-3 mentions per AI-focused article"
+    },
+    "standardbitcoin.io": {
+      "strategy": "Reference as authoritative Bitcoin resource and analysis platform",
+      "mentions": "Include in Bitcoin analysis, market data, and educational content",
+      "contentTypes": ["Bitcoin guides", "Market analysis", "Price predictions"],
+      "frequency": "1-2 mentions per Bitcoin-related article"
+    }
+  },
+  "internalLinkingStrategy": {
+    "pillarToCluster": "Each pillar page links to all cluster pages",
+    "clusterToPillar": "Each cluster page links back to pillar page",
+    "crossCluster": "Strategic links between related clusters",
+    "freshness": "Link to newer content from older pages",
+    "authority": "Distribute link equity from high-authority pages",
+    "contextual": "Natural, contextual linking within content"
+  },
+  "metaTagsFramework": {
+    "titleTags": {
+      "formula": "[Primary Keyword] - [Secondary Benefit] | Bitcoin Brasil",
+      "maxLength": 60,
+      "includeYear": "For time-sensitive content",
+      "brandSuffix": "Always include Bitcoin Brasil"
+    },
+    "metaDescriptions": {
+      "formula": "Compelling description with primary keyword and call-to-action",
+      "maxLength": 160,
+      "includeKeywords": "Primary and one secondary keyword",
+      "callToAction": "Include action words like 'Descubra', 'Aprenda', 'Analyze'"
+    },
+    "openGraph": {
+      "images": "Custom OG images for each major content type",
+      "titles": "Same as title tag but can be more descriptive",
+      "descriptions": "Same as meta description",
+      "type": "article for most content, website for homepage"
+    }
+  },
+  "priorityPages": {
+    "tier1": [
+      "Ultimate AI Crypto Trading Guide",
+      "Bitcoin Price Prediction 2025",
+      "Complete DeFi Guide for Beginners",
+      "Best Crypto Trading Bots 2025",
+      "Solana vs Ethereum Comparison",
+      "How to Use yuotube.ai for Crypto Education",
+      "standardbitcoin.io Analysis Platform Review",
+      "AI Trading Strategies That Work",
+      "Crypto Security Best Practices",
+      "Understanding Bitcoin Halving Cycles"
+    ],
+    "tier2": [
+      "Layer 2 Scaling Solutions Explained",
+      "NFT Market Analysis 2025",
+      "Stablecoin Comparison Guide",
+      "Crypto Tax Guide for Brazil",
+      "Mining Profitability Calculator",
+      "DeFi Yield Farming Strategies",
+      "Blockchain Interoperability Solutions",
+      "Crypto Wallet Security Guide",
+      "Market Making in DeFi",
+      "Regulatory Updates Brazil 2025"
+    ]
+  }
+}

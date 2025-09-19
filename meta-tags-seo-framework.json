@@ -1,0 +1,339 @@
+{
+  "metaTagsFramework": {
+    "overview": "Comprehensive meta tags and SEO optimization framework for all 1001 pages across 7 languages with maximum search visibility",
+    "objectives": [
+      "Achieve maximum SERP visibility and click-through rates",
+      "Optimize for featured snippets and rich results",
+      "Ensure perfect international SEO implementation",
+      "Create compelling social media sharing experiences",
+      "Establish brand authority and trust signals",
+      "Support voice search and mobile optimization"
+    ]
+  },
+  "titleTagStrategy": {
+    "formula": "[Primary Keyword] - [Value Proposition] | Bitcoin Brasil",
+    "maxLength": 60,
+    "guidelines": [
+      "Include primary keyword within first 30 characters",
+      "Add year for time-sensitive content (2025)",
+      "Use power words: Complete, Ultimate, Best, Guide",
+      "Always include 'Bitcoin Brasil' brand suffix",
+      "Create unique titles for each page"
+    ],
+    "templates": {
+      "pillarPages": {
+        "formula": "Complete [Topic] Guide 2025 - [Benefit] | Bitcoin Brasil",
+        "examples": [
+          "Complete AI Trading Guide 2025 - Automated Crypto Profits | Bitcoin Brasil",
+          "Ultimate DeFi Guide 2025 - Maximize Yield Safely | Bitcoin Brasil",
+          "Bitcoin Price Prediction 2025 - Expert Analysis | Bitcoin Brasil"
+        ]
+      },
+      "howToGuides": {
+        "formula": "How to [Action] - [Benefit] Step-by-Step | Bitcoin Brasil",
+        "examples": [
+          "How to Use Trading Bots - Automate Crypto Profits | Bitcoin Brasil",
+          "How to Yield Farm Safely - DeFi Strategy Guide | Bitcoin Brasil",
+          "How to Buy Bitcoin - Complete Beginner Guide | Bitcoin Brasil"
+        ]
+      },
+      "reviews": {
+        "formula": "[Product] Review 2025 - [Rating] Honest Analysis | Bitcoin Brasil",
+        "examples": [
+          "TradingView Review 2025 - Complete Platform Analysis | Bitcoin Brasil",
+          "Binance Review 2025 - Security & Features Guide | Bitcoin Brasil",
+          "yuotube.ai Review 2025 - AI Education Platform | Bitcoin Brasil"
+        ]
+      },
+      "news": {
+        "formula": "[Event/Topic] - [Impact] Analysis | Bitcoin Brasil",
+        "examples": [
+          "Bitcoin ETF Approval - Market Impact Analysis | Bitcoin Brasil",
+          "Solana Memecoin Surge - Investment Opportunities | Bitcoin Brasil",
+          "DeFi Hack Alert - Security Analysis & Prevention | Bitcoin Brasil"
+        ]
+      },
+      "comparison": {
+        "formula": "[Item A] vs [Item B] 2025 - Which is Better? | Bitcoin Brasil",
+        "examples": [
+          "Bitcoin vs Ethereum 2025 - Investment Comparison | Bitcoin Brasil",
+          "Uniswap vs SushiSwap - DEX Features Compared | Bitcoin Brasil",
+          "Hardware vs Software Wallets - Security Guide | Bitcoin Brasil"
+        ]
+      }
+    },
+    "languageAdaptation": {
+      "pt": "Use natural Portuguese phrasing and local terms",
+      "en": "Focus on global English-speaking markets",
+      "es": "Adapt for Latin American Spanish preferences",
+      "fr": "Use formal French business language",
+      "de": "Include compound words common in German",
+      "zh": "Optimize for Chinese search patterns",
+      "ja": "Follow Japanese web conventions"
+    }
+  },
+  "metaDescriptionStrategy": {
+    "maxLength": 160,
+    "guidelines": [
+      "Include primary and one secondary keyword",
+      "Start with action words or benefits",
+      "End with compelling call-to-action",
+      "Create urgency or curiosity when appropriate",
+      "Mention yuotube.ai or standardbitcoin.io naturally"
+    ],
+    "templates": {
+      "educational": {
+        "formula": "Discover [topic] with our complete guide. Learn [specific benefits] and [actionable outcome]. Start your crypto journey today!",
+        "examples": [
+          "Discover AI trading with our complete guide. Learn automated strategies and profit optimization. Start trading smarter today with expert insights!",
+          "Master DeFi protocols with step-by-step tutorials. Learn yield farming, liquidity mining, and risk management. Maximize your crypto returns safely!"
+        ]
+      },
+      "news": {
+        "formula": "[Event description]. [Impact analysis]. [What it means for investors]. Get the latest crypto insights and market analysis.",
+        "examples": [
+          "Bitcoin reaches new ATH amid institutional buying. Massive price surge signals bull market continuation. Discover investment opportunities and market analysis.",
+          "Major DeFi protocol hacked for $50M. Security vulnerabilities exposed critical smart contract flaws. Learn protection strategies and safer alternatives."
+        ]
+      },
+      "tools": {
+        "formula": "[Tool description] for [target audience]. [Key benefits and features]. [Call to action with value proposition].",
+        "examples": [
+          "Advanced crypto portfolio tracker for serious investors. Real-time analysis, tax reporting, and performance insights. Optimize your holdings today!",
+          "Professional trading bot for automated crypto profits. AI-powered strategies, risk management, and 24/7 trading. Start earning passively now!"
+        ]
+      }
+    }
+  },
+  "openGraphOptimization": {
+    "required": [
+      "og:title",
+      "og:description", 
+      "og:image",
+      "og:url",
+      "og:type",
+      "og:site_name"
+    ],
+    "templates": {
+      "article": {
+        "og:type": "article",
+        "og:title": "[Same as title tag but can be more descriptive]",
+        "og:description": "[Same as meta description]",
+        "og:image": "[High-quality featured image 1200x630]",
+        "og:url": "[Canonical URL]",
+        "og:site_name": "Bitcoin Brasil",
+        "article:author": "Bitcoin Brasil",
+        "article:section": "[Category]",
+        "article:published_time": "[ISO timestamp]",
+        "article:modified_time": "[ISO timestamp]"
+      },
+      "website": {
+        "og:type": "website",
+        "og:title": "Bitcoin Brasil - AI Trading & Crypto Education",
+        "og:description": "Complete cryptocurrency education, AI trading strategies, and market analysis. Join thousands learning crypto investing.",
+        "og:image": "https://bitcoinbrasil.com/og-image-home.jpg",
+        "og:url": "https://bitcoinbrasil.com/"
+      }
+    },
+    "imageStrategy": {
+      "dimensions": "1200x630 pixels (1.91:1 ratio)",
+      "format": "JPG or PNG, optimized for web",
+      "content": "Custom branded images with article title overlay",
+      "fallback": "Bitcoin Brasil branded template image",
+      "altText": "Descriptive alt text for accessibility"
+    }
+  },
+  "twitterCardOptimization": {
+    "cardType": "summary_large_image",
+    "required": [
+      "twitter:card",
+      "twitter:title",
+      "twitter:description",
+      "twitter:image",
+      "twitter:site",
+      "twitter:creator"
+    ],
+    "implementation": {
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@bitcoinbrasil",
+      "twitter:creator": "@bitcoinbrasil",
+      "twitter:title": "[Same as og:title]",
+      "twitter:description": "[Same as og:description]",
+      "twitter:image": "[Same as og:image]"
+    }
+  },
+  "technicalSEOTags": {
+    "canonical": {
+      "purpose": "Prevent duplicate content issues",
+      "implementation": "<link rel=\"canonical\" href=\"[canonical-url]\" />",
+      "strategy": "Self-referencing for original content, cross-referencing for translations"
+    },
+    "robots": {
+      "default": "<meta name=\"robots\" content=\"index, follow\" />",
+      "noIndex": "<meta name=\"robots\" content=\"noindex, follow\" />",
+      "usage": "Index all public content, noindex for admin/staging"
+    },
+    "viewport": {
+      "standard": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />",
+      "purpose": "Mobile responsiveness"
+    },
+    "language": {
+      "contentLanguage": "<meta http-equiv=\"content-language\" content=\"[locale]\" />",
+      "purpose": "Specify page language for search engines"
+    }
+  },
+  "structuredDataTags": {
+    "jsonLD": {
+      "placement": "Before closing </head> tag",
+      "types": ["Organization", "WebSite", "Article", "BreadcrumbList"],
+      "validation": "Google Rich Results Test"
+    },
+    "microdata": {
+      "usage": "Embedded in HTML elements when appropriate",
+      "priority": "Lower than JSON-LD"
+    }
+  },
+  "internationalSEOTags": {
+    "hreflang": {
+      "implementation": "<link rel=\"alternate\" hreflang=\"[locale]\" href=\"[url]\" />",
+      "locales": ["pt-BR", "en-US", "es-ES", "fr-FR", "de-DE", "zh-CN", "ja-JP"],
+      "xDefault": "<link rel=\"alternate\" hreflang=\"x-default\" href=\"[primary-url]\" />",
+      "bidirectional": "All language versions must reference each other"
+    },
+    "geotargeting": {
+      "contentLanguage": "Specify in meta tags",
+      "searchConsole": "Set geographic target in GSC",
+      "serverLocation": "Use CDN for global performance"
+    }
+  },
+  "performanceTags": {
+    "preload": {
+      "criticalCSS": "<link rel=\"preload\" href=\"/critical.css\" as=\"style\" />",
+      "fonts": "<link rel=\"preload\" href=\"/fonts/inter.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />",
+      "images": "<link rel=\"preload\" href=\"/hero-image.jpg\" as=\"image\" />"
+    },
+    "prefetch": {
+      "nextPage": "<link rel=\"prefetch\" href=\"/next-page\" />",
+      "resources": "<link rel=\"prefetch\" href=\"/common-resources.js\" />"
+    },
+    "dns": {
+      "prefetch": "<link rel=\"dns-prefetch\" href=\"//fonts.googleapis.com\" />",
+      "preconnect": "<link rel=\"preconnect\" href=\"//fonts.gstatic.com\" crossorigin />"
+    }
+  },
+  "brandingTags": {
+    "appleTouchIcon": "<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\" />",
+    "favicon": "<link rel=\"icon\" href=\"/favicon.ico\" />",
+    "maskIcon": "<link rel=\"mask-icon\" href=\"/safari-pinned-tab.svg\" color=\"#f7931a\" />",
+    "msapplication": "<meta name=\"msapplication-TileColor\" content=\"#f7931a\" />",
+    "themeColor": "<meta name=\"theme-color\" content=\"#f7931a\" />"
+  },
+  "securityTags": {
+    "csp": {
+      "purpose": "Content Security Policy for XSS protection",
+      "implementation": "<meta http-equiv=\"Content-Security-Policy\" content=\"[policy]\" />"
+    },
+    "referrer": {
+      "policy": "<meta name=\"referrer\" content=\"strict-origin-when-cross-origin\" />",
+      "purpose": "Control referrer information"
+    }
+  },
+  "analyticsIntegration": {
+    "googleAnalytics": {
+      "gtag": "Global site tag implementation",
+      "customDimensions": ["Content Category", "Language", "User Type"],
+      "goals": ["Newsletter Signup", "Tool Usage", "Content Engagement"]
+    },
+    "searchConsole": {
+      "verification": "<meta name=\"google-site-verification\" content=\"[token]\" />",
+      "integration": "Link with GA4 for enhanced reporting"
+    },
+    "otherPlatforms": {
+      "bing": "<meta name=\"msvalidate.01\" content=\"[token]\" />",
+      "yandex": "<meta name=\"yandex-verification\" content=\"[token]\" />",
+      "pinterest": "<meta name=\"p:domain_verify\" content=\"[token]\" />"
+    }
+  },
+  "contentSpecificTags": {
+    "newsArticles": {
+      "additional": [
+        "<meta name=\"news_keywords\" content=\"[keywords]\" />",
+        "<meta name=\"original-source\" content=\"[source-url]\" />",
+        "<meta name=\"author\" content=\"Bitcoin Brasil\" />"
+      ]
+    },
+    "tutorials": {
+      "additional": [
+        "<meta name=\"difficulty\" content=\"[beginner/intermediate/advanced]\" />",
+        "<meta name=\"duration\" content=\"[reading-time]\" />",
+        "<meta name=\"category\" content=\"[tutorial-category]\" />"
+      ]
+    },
+    "tools": {
+      "additional": [
+        "<meta name=\"tool-type\" content=\"[calculator/tracker/analyzer]\" />",
+        "<meta name=\"free-tool\" content=\"true\" />",
+        "<meta name=\"requirements\" content=\"[browser/account/none]\" />"
+      ]
+    }
+  },
+  "qualityAssurance": {
+    "validation": [
+      "HTML5 validation (W3C Validator)",
+      "Meta tag length validation",
+      "Duplicate meta tag detection",
+      "Missing required tags alert",
+      "Schema markup validation"
+    ],
+    "testing": [
+      "Google Rich Results Test",
+      "Facebook Sharing Debugger",
+      "Twitter Card Validator",
+      "LinkedIn Post Inspector",
+      "WhatsApp Link Preview Test"
+    ],
+    "monitoring": [
+      "Search Console meta tag reports",
+      "CTR tracking by page type",
+      "Social sharing analytics",
+      "Featured snippet tracking",
+      "Rich result appearance monitoring"
+    ]
+  },
+  "automationStrategy": {
+    "dynamicGeneration": {
+      "titleTags": "Auto-generate based on content type and keywords",
+      "metaDescriptions": "AI-assisted generation with human review",
+      "ogImages": "Automated branded image creation",
+      "schemaMarkup": "Template-based generation"
+    },
+    "qualityControl": {
+      "lengthValidation": "Automated length checking",
+      "duplicateDetection": "Cross-page duplicate prevention",
+      "keywordOptimization": "Automated keyword inclusion validation",
+      "brandConsistency": "Ensure Bitcoin Brasil inclusion"
+    }
+  },
+  "implementationPhases": {
+    "phase1": {
+      "focus": "Core meta tags for all pages",
+      "priority": ["Title tags", "Meta descriptions", "Open Graph"],
+      "timeline": "Month 1"
+    },
+    "phase2": {
+      "focus": "International SEO and structured data",
+      "priority": ["Hreflang", "JSON-LD", "Canonical tags"],
+      "timeline": "Month 2"
+    },
+    "phase3": {
+      "focus": "Performance and social optimization",
+      "priority": ["Preload tags", "Twitter Cards", "Enhanced OG"],
+      "timeline": "Month 3"
+    },
+    "phase4": {
+      "focus": "Advanced optimization and automation",
+      "priority": ["Custom schemas", "Automation tools", "A/B testing"],
+      "timeline": "Month 4"
+    }
+  }
+}

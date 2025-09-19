@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Link from "next/link";
-import { TrendingUp, Brain, Users, ChartBar } from "lucide-react";
+import { TrendingUp, Brain, Users, BarChart3 } from "lucide-react";
 
 export default function Home() {
   return (
@@ -100,7 +100,7 @@ export default function Home() {
             {/* Market Data */}
             <section className="bg-white rounded-xl shadow-lg p-6 border-2 border-standard-orange">
               <h2 className="text-2xl font-bold mb-6 text-standard-orange flex items-center">
-                <ChartBar className="mr-2" />
+                <BarChart3 className="mr-2" />
                 Mercado Crypto
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

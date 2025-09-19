@@ -1,0 +1,335 @@
+{
+  "languageRoutingSystem": {
+    "overview": "Comprehensive internationalization system for 7 languages with SEO-optimized URL structure and content management",
+    "languages": {
+      "pt": {
+        "name": "Português (Brasil)",
+        "locale": "pt-BR",
+        "flag": "🇧🇷",
+        "isDefault": true,
+        "urlPrefix": "",
+        "market": "Primary - Brazil and Portuguese-speaking countries",
+        "priority": 1
+      },
+      "en": {
+        "name": "English",
+        "locale": "en-US",
+        "flag": "🇺🇸",
+        "isDefault": false,
+        "urlPrefix": "/en",
+        "market": "Global - English-speaking countries",
+        "priority": 2
+      },
+      "es": {
+        "name": "Español",
+        "locale": "es-ES",
+        "flag": "🇪🇸",
+        "urlPrefix": "/es",
+        "market": "Latin America and Spain",
+        "priority": 3
+      },
+      "fr": {
+        "name": "Français",
+        "locale": "fr-FR",
+        "flag": "🇫🇷",
+        "urlPrefix": "/fr",
+        "market": "France and French-speaking countries",
+        "priority": 4
+      },
+      "de": {
+        "name": "Deutsch",
+        "locale": "de-DE",
+        "flag": "🇩🇪",
+        "urlPrefix": "/de",
+        "market": "Germany, Austria, Switzerland",
+        "priority": 5
+      },
+      "zh": {
+        "name": "中文",
+        "locale": "zh-CN",
+        "flag": "🇨🇳",
+        "urlPrefix": "/zh",
+        "market": "China and Chinese-speaking regions",
+        "priority": 6
+      },
+      "ja": {
+        "name": "日本語",
+        "locale": "ja-JP",
+        "flag": "🇯🇵",
+        "urlPrefix": "/ja",
+        "market": "Japan",
+        "priority": 7
+      }
+    },
+    "urlStructure": {
+      "pattern": "/{language?}/{category}/{subcategory?}/{slug}",
+      "examples": {
+        "pt": {
+          "homepage": "https://bitcoinbrasil.com/",
+          "category": "https://bitcoinbrasil.com/ai-trading/",
+          "subcategory": "https://bitcoinbrasil.com/ai-trading/bots/",
+          "article": "https://bitcoinbrasil.com/ai-trading/bots/guia-completo-trading-bots-2025/"
+        },
+        "en": {
+          "homepage": "https://bitcoinbrasil.com/en/",
+          "category": "https://bitcoinbrasil.com/en/ai-trading/",
+          "subcategory": "https://bitcoinbrasil.com/en/ai-trading/bots/",
+          "article": "https://bitcoinbrasil.com/en/ai-trading/bots/complete-guide-trading-bots-2025/"
+        },
+        "es": {
+          "homepage": "https://bitcoinbrasil.com/es/",
+          "category": "https://bitcoinbrasil.com/es/trading-ia/",
+          "subcategory": "https://bitcoinbrasil.com/es/trading-ia/bots/",
+          "article": "https://bitcoinbrasil.com/es/trading-ia/bots/guia-completa-bots-trading-2025/"
+        }
+      }
+    },
+    "categoryTranslations": {
+      "ai-trading": {
+        "pt": "ai-trading",
+        "en": "ai-trading",
+        "es": "trading-ia",
+        "fr": "trading-ia",
+        "de": "ki-trading",
+        "zh": "ai-jiaoyi",
+        "ja": "ai-toreding"
+      },
+      "crypto-education": {
+        "pt": "educacao",
+        "en": "education",
+        "es": "educacion",
+        "fr": "education",
+        "de": "bildung",
+        "zh": "jiaoyu",
+        "ja": "kyouiku"
+      },
+      "defi-protocols": {
+        "pt": "defi",
+        "en": "defi",
+        "es": "defi",
+        "fr": "defi",
+        "de": "defi",
+        "zh": "defi",
+        "ja": "defi"
+      },
+      "blockchain-tech": {
+        "pt": "blockchain",
+        "en": "blockchain",
+        "es": "blockchain",
+        "fr": "blockchain",
+        "de": "blockchain",
+        "zh": "qukuailian",
+        "ja": "burokucheen"
+      },
+      "market-intelligence": {
+        "pt": "analise",
+        "en": "analysis",
+        "es": "analisis",
+        "fr": "analyse",
+        "de": "analyse",
+        "zh": "fenxi",
+        "ja": "bunseki"
+      },
+      "security-practices": {
+        "pt": "seguranca",
+        "en": "security",
+        "es": "seguridad",
+        "fr": "securite",
+        "de": "sicherheit",
+        "zh": "anquan",
+        "ja": "anzen"
+      },
+      "news-analysis": {
+        "pt": "noticias",
+        "en": "news",
+        "es": "noticias",
+        "fr": "actualites",
+        "de": "nachrichten",
+        "zh": "xinwen",
+        "ja": "nyuusu"
+      },
+      "tools-resources": {
+        "pt": "ferramentas",
+        "en": "tools",
+        "es": "herramientas",
+        "fr": "outils",
+        "de": "werkzeuge",
+        "zh": "gongju",
+        "ja": "tsuru"
+      }
+    },
+    "hreflangImplementation": {
+      "strategy": "Bidirectional hreflang tags for all language versions",
+      "template": "<link rel=\"alternate\" hreflang=\"{locale}\" href=\"{url}\" />",
+      "example": [
+        "<link rel=\"alternate\" hreflang=\"pt-BR\" href=\"https://bitcoinbrasil.com/ai-trading/\" />",
+        "<link rel=\"alternate\" hreflang=\"en-US\" href=\"https://bitcoinbrasil.com/en/ai-trading/\" />",
+        "<link rel=\"alternate\" hreflang=\"es-ES\" href=\"https://bitcoinbrasil.com/es/trading-ia/\" />",
+        "<link rel=\"alternate\" hreflang=\"fr-FR\" href=\"https://bitcoinbrasil.com/fr/trading-ia/\" />",
+        "<link rel=\"alternate\" hreflang=\"de-DE\" href=\"https://bitcoinbrasil.com/de/ki-trading/\" />",
+        "<link rel=\"alternate\" hreflang=\"zh-CN\" href=\"https://bitcoinbrasil.com/zh/ai-jiaoyi/\" />",
+        "<link rel=\"alternate\" hreflang=\"ja-JP\" href=\"https://bitcoinbrasil.com/ja/ai-toreding/\" />",
+        "<link rel=\"alternate\" hreflang=\"x-default\" href=\"https://bitcoinbrasil.com/ai-trading/\" />"
+      ]
+    },
+    "nextjsImplementation": {
+      "i18nConfig": {
+        "locales": ["pt", "en", "es", "fr", "de", "zh", "ja"],
+        "defaultLocale": "pt",
+        "localeDetection": true,
+        "domains": [
+          {
+            "domain": "bitcoinbrasil.com",
+            "defaultLocale": "pt"
+          }
+        ]
+      },
+      "folderStructure": {
+        "pages": {
+          "structure": "pages/[locale]/[...slug].tsx",
+          "description": "Dynamic routing for all languages and content"
+        },
+        "content": {
+          "structure": "content/{language}/{category}/{slug}.json",
+          "description": "Organized content files by language and category"
+        },
+        "translations": {
+          "structure": "locales/{language}/common.json",
+          "description": "UI translations and common text"
+        }
+      },
+      "middlewareConfig": {
+        "purpose": "Handle language detection and routing",
+        "features": [
+          "Automatic language detection from headers",
+          "Cookie-based language preference",
+          "Redirect logic for SEO-friendly URLs",
+          "Geolocation-based suggestions"
+        ]
+      }
+    },
+    "languageDetection": {
+      "priority": [
+        "URL path language prefix",
+        "User preference cookie",
+        "Accept-Language header",
+        "Geolocation fallback",
+        "Default to Portuguese"
+      ],
+      "cookieConfig": {
+        "name": "preferred-language",
+        "maxAge": "365 days",
+        "httpOnly": false,
+        "sameSite": "lax"
+      }
+    },
+    "contentManagement": {
+      "structure": {
+        "contentFiles": "JSON files with structured data",
+        "translations": "Separate translation files for UI elements",
+        "metadata": "Language-specific meta tags and SEO data"
+      },
+      "contentSchema": {
+        "template": {
+          "id": "unique-identifier",
+          "language": "language-code",
+          "category": "content-category",
+          "slug": "url-slug",
+          "title": "page-title",
+          "description": "meta-description",
+          "keywords": ["keyword1", "keyword2"],
+          "content": "main-content-html",
+          "publishedAt": "iso-date",
+          "updatedAt": "iso-date",
+          "author": "author-info",
+          "schema": "structured-data",
+          "relatedContent": ["related-ids"],
+          "translations": {
+            "en": "english-version-id",
+            "es": "spanish-version-id"
+          }
+        }
+      }
+    },
+    "seoOptimization": {
+      "canonicalUrls": {
+        "strategy": "Self-referencing canonical URLs for each language version",
+        "template": "<link rel=\"canonical\" href=\"{current-url}\" />"
+      },
+      "metaTags": {
+        "language": "<meta http-equiv=\"content-language\" content=\"{locale}\" />",
+        "ogLocale": "<meta property=\"og:locale\" content=\"{locale}\" />",
+        "alternateLocales": "<meta property=\"og:locale:alternate\" content=\"{alternate-locale}\" />"
+      },
+      "sitemaps": {
+        "structure": "Separate sitemaps for each language",
+        "files": [
+          "sitemap-pt.xml",
+          "sitemap-en.xml",
+          "sitemap-es.xml",
+          "sitemap-fr.xml",
+          "sitemap-de.xml",
+          "sitemap-zh.xml",
+          "sitemap-ja.xml"
+        ],
+        "masterSitemap": "sitemap.xml with references to language-specific sitemaps"
+      }
+    },
+    "userExperience": {
+      "languageSwitcher": {
+        "placement": "Header and footer",
+        "style": "Dropdown with flags and language names",
+        "behavior": "Maintain current page context when switching"
+      },
+      "fallbackBehavior": {
+        "missingTranslation": "Show default language version with notice",
+        "brokenLinks": "Redirect to equivalent page in available language",
+        "404Pages": "Language-specific 404 pages with suggestions"
+      },
+      "rtlSupport": {
+        "languages": "Future support for Arabic and Hebrew",
+        "css": "RTL-aware styles and layouts"
+      }
+    },
+    "performanceOptimization": {
+      "caching": {
+        "strategy": "Cache language-specific content separately",
+        "headers": "Vary: Accept-Language header",
+        "cdn": "CloudFlare with country-specific edge caching"
+      },
+      "bundleSplitting": {
+        "translations": "Load only required language files",
+        "content": "On-demand content loading per language",
+        "fonts": "Language-specific font subsets"
+      }
+    },
+    "analytics": {
+      "tracking": {
+        "metrics": [
+          "Language preference distribution",
+          "Page views by language",
+          "Conversion rates per language",
+          "Bounce rates by language",
+          "User engagement by language"
+        ],
+        "tools": [
+          "Google Analytics 4 with language dimensions",
+          "Search Console for each language market",
+          "Hotjar for user behavior analysis"
+        ]
+      }
+    },
+    "maintenance": {
+      "contentUpdates": {
+        "process": "Update master content first, then translations",
+        "validation": "Automated checks for missing translations",
+        "quality": "Native speaker review for key content"
+      },
+      "urlChanges": {
+        "redirects": "Maintain redirects for URL structure changes",
+        "communication": "Notify search engines of changes",
+        "monitoring": "Track for broken links and 404s"
+      }
+    }
+  }
+}

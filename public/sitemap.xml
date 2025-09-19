@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage in all languages -->
+  <url>
+    <loc>https://bitcoinbrasil.org/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://bitcoinbrasil.org/pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bitcoinbrasil.org/en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bitcoinbrasil.org/es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bitcoinbrasil.org/fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bitcoinbrasil.org/de"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://bitcoinbrasil.org/zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bitcoinbrasil.org/ja"/>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Main sections in Portuguese -->
+  <url>
+    <loc>https://bitcoinbrasil.org/noticias</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/mercado</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/ai-agents</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/educacao</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/defi</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- English sections -->
+  <url>
+    <loc>https://bitcoinbrasil.org/en/news</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/en/market</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/en/ai-agents</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Spanish sections -->
+  <url>
+    <loc>https://bitcoinbrasil.org/es/noticias</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/es/mercado</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Authority sites redirects -->
+  <url>
+    <loc>https://bitcoinbrasil.org/yuotube</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bitcoinbrasil.org/standardbitcoin</loc>
+    <lastmod>2025-09-19T00:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Add more URLs as content is created -->
+</urlset>
