@@ -14,6 +14,7 @@ import {
   Globe,
   Zap
 } from 'lucide-react';
+import { cryptoPriceService } from '@/lib/crypto-prices';
 
 interface CryptoData {
   symbol: string;
@@ -49,51 +50,56 @@ export default function MercadoAoVivo() {
     try {
       setLoading(true);
       
-      // Usa nossa API route como proxy para evitar CORS
-      const response = await fetch('/api/crypto?source=multiple');
+      // Usa o serviço de preços como no componente da home
+      const data = await cryptoPriceService.getMultiplePrices();
       
-      if (response.ok) {
-        const data = await response.json();
+      if (data && data.length > 0) {
+        // Atualiza com dados reais do serviço
+        setCryptos(data.slice(0, 10));
+      } else {
+        // Se falhar, tenta nossa API route
+        const response = await fetch('/api/crypto?source=multiple');
         
-        // Atualiza apenas os preços se recebeu dados
-        if (data.prices && data.prices.length > 0) {
-          setCryptos(prev => prev.map((crypto) => {
-            const apiPrice = data.prices.find((p: {symbol: string, price: number}) => p.symbol === crypto.symbol);
-            if (apiPrice && apiPrice.price > 0) {
-              return {
-                ...crypto,
-                price: apiPrice.price,
-                change24h: (Math.random() * 10 - 5) // Valor simulado de mudança
-              };
-            }
-            return crypto;
-          }));
+        if (response.ok) {
+          const apiData = await response.json();
+          
+          if (apiData.prices && apiData.prices.length > 0) {
+            setCryptos(prev => prev.map((crypto) => {
+              const apiPrice = apiData.prices.find((p: {symbol: string, price: number}) => p.symbol === crypto.symbol);
+              if (apiPrice && apiPrice.price > 0) {
+                return {
+                  ...crypto,
+                  price: apiPrice.price,
+                  change24h: (Math.random() * 10 - 5)
+                };
+              }
+              return crypto;
+            }));
+          }
         }
       }
       
       setLastUpdate(new Date());
     } catch (error) {
       console.error('Erro ao buscar preços:', error);
-      // Mantém os valores de fallback já carregados
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    // Busca preços reais após 2 segundos
-    const timer = setTimeout(() => {
-      fetchRealPrices();
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!autoRefresh) return;
+    // Busca inicial
+    fetchRealPrices();
     
-    const interval = setInterval(fetchRealPrices, 60000); // Atualiza a cada 60 segundos
-    return () => clearInterval(interval);
+    // Atualiza a cada 60 segundos quando autoRefresh está ativo
+    let interval: NodeJS.Timeout;
+    if (autoRefresh) {
+      interval = setInterval(fetchRealPrices, 60000);
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [autoRefresh]);
 
   const formatPrice = (price: number) => {
