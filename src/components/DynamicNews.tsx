@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Clock, Twitter, Newspaper, Sparkles } from 'lucide-react';
 
 interface NewsItem {
@@ -28,7 +28,7 @@ export default function DynamicNews({ category, limit = 5, showTwitter = false }
   const [lastUpdate, setLastUpdate] = useState(new Date());
 
   // Função para gerar notícias dinâmicas
-  const generateDynamicNews = (): NewsItem[] => {
+  const generateDynamicNews = useCallback((): NewsItem[] => {
     const now = new Date();
     
     const newsTemplates = [
@@ -73,7 +73,7 @@ export default function DynamicNews({ category, limit = 5, showTwitter = false }
       timestamp: new Date(now.getTime() - (index * 2 * 60 * 60 * 1000)),
       url: '#',
     }));
-  };
+  }, [limit]);
 
   // Função para gerar posts do Twitter
   const generateTwitterPosts = (): NewsItem[] => {
