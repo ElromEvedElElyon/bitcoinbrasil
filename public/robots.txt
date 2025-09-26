@@ -1,33 +1,53 @@
-# Bitcoin Brasil - robots.txt
-# Optimized for maximum indexing
+# Robots.txt for Bitcoin Brasil
+# https://bitcoinbrasil.org/
 
+# Allow all crawlers
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/
 Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
 
-# Google Bot
+# Googlebot specific
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
-# Bing Bot
+# Bingbot specific
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 0
 
-# ChatGPT / OpenAI
-User-agent: GPTBot
-Allow: /
-
-# Claude / Anthropic
-User-agent: Claude-Web
-Allow: /
-
-# Gemini / Google
-User-agent: Google-Extended
-Allow: /
+# Important pages to crawl
+Allow: /noticias
+Allow: /mercado
+Allow: /sobre
+Allow: /contato
 
 # Sitemap location
 Sitemap: https://bitcoinbrasil.org/sitemap.xml
+Sitemap: https://bitcoinbrasil.org/news-sitemap.xml
+
+# Cache parameters
+Allow: /*?utm_source=
+Allow: /*?utm_medium=
+Allow: /*?utm_campaign=
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Performance optimization
+User-agent: *
+Crawl-delay: 1
+Request-rate: 1/1

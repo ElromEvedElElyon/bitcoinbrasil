@@ -1,0 +1,50 @@
+{
+  "name": "Bitcoin Brasil - Notícias Crypto e AI Agents",
+  "short_name": "Bitcoin Brasil",
+  "description": "Seu portal definitivo para notícias sobre Bitcoin, criptomoedas, AI agents e o futuro das finanças digitais.",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "orientation": "portrait-primary",
+  "categories": ["news", "finance", "cryptocurrency"],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Notícias",
+      "short_name": "News",
+      "description": "Últimas notícias crypto",
+      "url": "/noticias?source=pwa",
+      "icons": [{ "src": "/news-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Mercado",
+      "short_name": "Market",
+      "description": "Mercado crypto ao vivo",
+      "url": "/mercado?source=pwa",
+      "icons": [{ "src": "/market-icon.png", "sizes": "96x96" }]
+    }
+  ]
+}
