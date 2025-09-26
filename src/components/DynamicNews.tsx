@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { TrendingUp, Clock, Twitter, Newspaper, Sparkles } from 'lucide-react';
+import { Clock, Twitter, Newspaper, Sparkles } from 'lucide-react';
 
 interface NewsItem {
   id: string;
@@ -162,7 +162,7 @@ export default function DynamicNews({ category, limit = 5, showTwitter = false }
     const interval = setInterval(fetchNews, 5 * 60 * 1000);
 
     return () => clearInterval(interval);
-  }, [category, limit, showTwitter]);
+  }, [category, limit, showTwitter, generateDynamicNews]);
 
   const getCategoryColor = (cat: string) => {
     const colors: Record<string, string> = {

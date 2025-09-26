@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowLeft, Clock, ExternalLink, RefreshCw, Twitter, Brain, Bitcoin, Newspaper } from "lucide-react";
+import { ArrowLeft, ExternalLink, RefreshCw, Twitter, Brain, Bitcoin, Newspaper } from "lucide-react";
 import DynamicNews from '@/components/DynamicNews';
 import { useState } from 'react';
 

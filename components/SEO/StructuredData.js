@@ -205,7 +205,7 @@ export const StructuredDataHead = ({ schemas = [] }) => {
   );
 };
 
-export default {
+const StructuredDataExports = {
   websiteSchema,
   organizationSchema,
   breadcrumbSchema,
@@ -215,3 +215,5 @@ export default {
   injectStructuredData,
   StructuredDataHead
 };
+
+export default StructuredDataExports;
