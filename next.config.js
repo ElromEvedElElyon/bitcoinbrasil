@@ -137,9 +137,15 @@ module.exports = {
                   /node_modules[\\/]/.test(module.identifier());
               },
               name(module) {
-                const hash = crypto.createHash('sha256');
-                hash.update(module.identifier());
-                return hash.digest('hex').substring(0, 8);
+                // Simple hash function without crypto dependency
+                const moduleId = module.identifier();
+                let hash = 0;
+                for (let i = 0; i < moduleId.length; i++) {
+                  const char = moduleId.charCodeAt(i);
+                  hash = ((hash << 5) - hash) + char;
+                  hash = hash & hash; // Convert to 32bit integer
+                }
+                return 'lib-' + Math.abs(hash).toString(16).substring(0, 8);
               },
               priority: 30,
               minChunks: 1,
@@ -152,11 +158,15 @@ module.exports = {
             },
             shared: {
               name(module, chunks) {
-                return crypto
-                  .createHash('sha256')
-                  .update(chunks.reduce((acc, chunk) => acc + chunk.name, ''))
-                  .digest('hex')
-                  .substring(0, 8);
+                // Simple hash function without crypto dependency
+                const chunkNames = chunks.reduce((acc, chunk) => acc + chunk.name, '');
+                let hash = 0;
+                for (let i = 0; i < chunkNames.length; i++) {
+                  const char = chunkNames.charCodeAt(i);
+                  hash = ((hash << 5) - hash) + char;
+                  hash = hash & hash; // Convert to 32bit integer
+                }
+                return 'shared-' + Math.abs(hash).toString(16).substring(0, 8);
               },
               priority: 10,
               minChunks: 2,
