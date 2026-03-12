@@ -7,7 +7,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://bitcoinbrasil.org/</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://bitcoinbrasil.org/"/>
@@ -18,7 +18,7 @@
   <!-- News Section -->
   <url>
     <loc>https://bitcoinbrasil.org/noticias</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -26,7 +26,7 @@
   <!-- Market Section -->
   <url>
     <loc>https://bitcoinbrasil.org/mercado</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>always</changefreq>
     <priority>0.9</priority>
   </url>
@@ -34,7 +34,7 @@
   <!-- About Page -->
   <url>
     <loc>https://bitcoinbrasil.org/sobre</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -42,7 +42,7 @@
   <!-- Contact Page -->
   <url>
     <loc>https://bitcoinbrasil.org/contato</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -50,7 +50,7 @@
   <!-- Bitcoin Category -->
   <url>
     <loc>https://bitcoinbrasil.org/categoria/bitcoin</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -58,7 +58,7 @@
   <!-- Cryptocurrency Category -->
   <url>
     <loc>https://bitcoinbrasil.org/categoria/criptomoedas</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -66,7 +66,7 @@
   <!-- AI Agents Category -->
   <url>
     <loc>https://bitcoinbrasil.org/categoria/ai-agents</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -74,7 +74,7 @@
   <!-- Memes Category -->
   <url>
     <loc>https://bitcoinbrasil.org/categoria/memes</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -82,7 +82,7 @@
   <!-- STBTCx Token Page -->
   <url>
     <loc>https://bitcoinbrasil.org/stbtcx</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -90,7 +90,7 @@
   <!-- Privacy Policy -->
   <url>
     <loc>https://bitcoinbrasil.org/privacidade</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -98,7 +98,7 @@
   <!-- Terms of Service -->
   <url>
     <loc>https://bitcoinbrasil.org/termos</loc>
-    <lastmod>2025-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
